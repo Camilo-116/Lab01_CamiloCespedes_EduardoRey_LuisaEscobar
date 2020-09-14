@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lab01_camilocespedes_eduardorey_luisaescobar;
+package Inter;
 
 /**
  *
  * @author Camilo Cespedes
  */
-public class CommentJSON {
+public class PostJSON {
     
 }

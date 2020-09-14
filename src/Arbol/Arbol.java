@@ -3,12 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lab01_camilocespedes_eduardorey_luisaescobar;
+package Arbol;
+
+import lab01_camilocespedes_eduardorey_luisaescobar.MTA;
+import lab01_camilocespedes_eduardorey_luisaescobar.User;
 
 /**
  *
  * @author Camilo Cespedes
  */
-public class ArbolBinario extends Arbol{
-    
+public abstract class Arbol implements MTA{
+    User user;
 }

@@ -5,6 +5,9 @@
  */
 package lab01_camilocespedes_eduardorey_luisaescobar;
 
+import Arbol.ArbolNA;
+import Arbol.ArbolBinario;
+import Inter.*;
 import java.util.ArrayList;
 
 /**
@@ -13,9 +16,9 @@ import java.util.ArrayList;
  */
 public class Lab01_CamiloCespedes_EduardoRey_LuisaEscobar {
 
-    private ArrayList<InterJSON> masters;
-    private ArrayList<ArbolBinario> ABBs;
-    private ArrayList<ArbolNA> As;
+    private static ArrayList<InterJSON> masters;
+    private static ArrayList<ArbolBinario> ABBs;
+    private static ArrayList<ArbolNA> As;
     private static Ventana ventana;
 
     public static void main(String args[]) {
