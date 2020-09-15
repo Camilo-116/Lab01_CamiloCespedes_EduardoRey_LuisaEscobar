@@ -12,4 +12,13 @@ package lab01_camilocespedes_eduardorey_luisaescobar;
 public class Comment {
     private int id, postID;
     private String name, email, body;
+
+    public Comment(int postID, int id, String name, String email, String body) {
+        this.id = id;
+        this.postID = postID;
+        this.name = name;
+        this.email = email;
+        this.body = body;
+    }
+    
 }

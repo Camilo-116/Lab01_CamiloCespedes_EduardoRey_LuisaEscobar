@@ -12,4 +12,13 @@ package lab01_camilocespedes_eduardorey_luisaescobar;
 public class Address {
     private String street, suite, city, zipCode;
     private Geo geo;
+
+    public Address(String street, String suite, String city, String zipCode, Geo geo) {
+        this.street = street;
+        this.suite = suite;
+        this.city = city;
+        this.zipCode = zipCode;
+        this.geo = geo;
+    }
+    
 }

@@ -5,17 +5,23 @@
  */
 package lab01_camilocespedes_eduardorey_luisaescobar;
 
+import Arbol.ArbolBinario;
+import Arbol.ArbolNA;
+import Inter.InterJSON;
+import java.util.ArrayList;
+
 /**
  *
  * @author Camilo Cespedes
  */
 public class Ventana extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Ventana
-     */
+    private static ArrayList<InterJSON> masters;
+    private static ArrayList<ArbolBinario> ABBs;
+    private static ArrayList<ArbolNA> As;
     public Ventana() {
         initComponents();
+        
     }
 
     /**
@@ -33,11 +39,11 @@ public class Ventana extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 705, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 426, Short.MAX_VALUE)
         );
 
         pack();

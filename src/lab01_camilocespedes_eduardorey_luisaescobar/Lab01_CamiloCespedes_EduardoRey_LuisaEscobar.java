@@ -16,9 +16,7 @@ import java.util.ArrayList;
  */
 public class Lab01_CamiloCespedes_EduardoRey_LuisaEscobar {
 
-    private static ArrayList<InterJSON> masters;
-    private static ArrayList<ArbolBinario> ABBs;
-    private static ArrayList<ArbolNA> As;
+    
     private static Ventana ventana;
 
     public static void main(String args[]) {

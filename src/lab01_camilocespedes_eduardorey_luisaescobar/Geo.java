@@ -11,4 +11,10 @@ package lab01_camilocespedes_eduardorey_luisaescobar;
  */
 public class Geo {
     private float latitud, longitud;
+
+    public Geo(float latitud, float longitud) {
+        this.latitud = latitud;
+        this.longitud = longitud;
+    }
+    
 }
