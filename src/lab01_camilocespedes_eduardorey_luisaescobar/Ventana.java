@@ -23,7 +23,7 @@ public class Ventana extends javax.swing.JFrame {
     public Ventana() {
         initComponents();
         master = new InterJSON();
-        ArrayList<User> users = master.Transformar();
+        //ArrayList<User> users = master.Transformar();  //Se crea el arreglo de usuarios con todos sus atributos, incluyendo posts y comentarios
     }
 
     /**
