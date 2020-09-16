@@ -6,7 +6,7 @@
 package Inter;
 
 import java.util.ArrayList;
-import lab01_camilocespedes_eduardorey_luisaescobar.User;
+import lab01_camilocespedes_eduardorey_luisaescobar.*;
 
 /**
  *
@@ -24,7 +24,19 @@ public class InterJSON {
     }
     
     public ArrayList<User> Transformar(){
-        ArrayList<User> usersT = new ArrayList();
+        ArrayList<User> usersT = userJ.GroupProperties();
+        ArrayList<Post> postsT = postJ.GroupProperties();
+        ArrayList<Comment> commentsT = commentJ.GroupProperties();
+        for (User user : usersT) {
+            for (Post post : postsT) {
+                for (Comment comment : commentsT) {
+                    if (comment.getPostID()== post.getId())
+                        post.addComment(comment);
+                }
+                if(post.getUserID() == post.getId())
+                    user.addPost(post);
+            }
+        }
         return usersT;
     }
 }

@@ -21,10 +21,41 @@ public class Post {
         this.userID = userID;
         this.tittle = tittle;
         this.body = body;
+        comments = new ArrayList();
     }
 
-    public void setComments(ArrayList<Comment> comments) {
-        this.comments = comments;
+    public int getId() {
+        return id;
+    }
+
+    public int getUserID() {
+        return userID;
+    }
+
+    public String getTittle() {
+        return tittle;
+    }
+
+    public String getBody() {
+        return body;
+    }
+
+    public ArrayList<Comment> getComments() {
+        return comments;
+    }
+
+    public void addComment(Comment comment) {
+        this.comments.add(comment);
+    }
+
+    void show() {
+        System.out.println(this.userID);
+        System.out.println(this.id);
+        System.out.println(this.tittle);
+        System.out.println(this.body);
+        for (Comment comment : comments) {
+            comment.show();
+        }
     }
     
 }

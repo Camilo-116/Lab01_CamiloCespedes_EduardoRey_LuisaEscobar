@@ -28,10 +28,62 @@ public class User {
         this.webSite = webSite;
         this.address = address;
         this.company = company;
+        posts = new ArrayList();
     }
 
-    public void setPosts(ArrayList<Post> posts) {
-        this.posts = posts;
+    public int getId() {
+        return id;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public String getWebSite() {
+        return webSite;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public ArrayList<Post> getPosts() {
+        return posts;
+    }
+
+    public void addPost(Post post) {
+        this.posts.add(post);
+    }
+
+    void show() {
+        System.out.println(this.id);
+        System.out.println(this.name);
+        System.out.println(this.userName);
+        System.out.println(this.email);
+        System.out.println(this.address.show());
+        System.out.println(this.phone);
+        System.out.println(this.webSite);
+        System.out.println(this.company.show());
+        for (Post post : posts) {
+            post.show();
+        }
+    }
+
     
 }

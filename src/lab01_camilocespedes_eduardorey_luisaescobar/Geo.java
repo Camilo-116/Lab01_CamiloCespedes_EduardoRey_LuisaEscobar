@@ -16,5 +16,20 @@ public class Geo {
         this.latitud = latitud;
         this.longitud = longitud;
     }
+
+    public float getLatitud() {
+        return latitud;
+    }
+
+    public float getLongitud() {
+        return longitud;
+    }
+
+    public StringBuffer show() {
+        StringBuffer sb = new StringBuffer("Geo: {\n");
+        sb.append("\t"+this.latitud+"\n");
+        sb.append("\t"+this.longitud+"\n");
+        return sb;
+    }
     
 }

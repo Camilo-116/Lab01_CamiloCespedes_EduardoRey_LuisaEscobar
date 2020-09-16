@@ -20,5 +20,33 @@ public class Comment {
         this.email = email;
         this.body = body;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public int getPostID() {
+        return postID;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getBody() {
+        return body;
+    }
+
+    void show() {
+        System.out.println(this.postID);
+        System.out.println(this.id);
+        System.out.println(this.name);
+        System.out.println(this.email);
+        System.out.println(this.body);
+    }
     
 }

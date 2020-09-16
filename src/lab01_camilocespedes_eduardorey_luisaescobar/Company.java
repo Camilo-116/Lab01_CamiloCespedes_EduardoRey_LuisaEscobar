@@ -17,5 +17,25 @@ public class Company {
         this.catchPhrase = catchPhrase;
         this.bs = bs;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getCatchPhrase() {
+        return catchPhrase;
+    }
+
+    public String getBs() {
+        return bs;
+    }
+
+    StringBuffer show() {
+        StringBuffer sb = new StringBuffer("Company: {\n");
+        sb.append(this.name);
+        sb.append(this.catchPhrase);
+        sb.append(this.bs);
+        return sb;
+    }
     
 }

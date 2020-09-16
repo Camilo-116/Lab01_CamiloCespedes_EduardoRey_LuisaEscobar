@@ -20,5 +20,35 @@ public class Address {
         this.zipCode = zipCode;
         this.geo = geo;
     }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public String getSuite() {
+        return suite;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    public Geo getGeo() {
+        return geo;
+    }
+
+    StringBuffer show() {
+        StringBuffer sb = new StringBuffer("address: {\n");
+        sb.append("\t"+this.street+"\n");
+        sb.append("\t"+this.suite+"\n");
+        sb.append("\t"+this.city+"\n");
+        sb.append("\t"+this.zipCode+"\n");
+        sb.append(this.geo.show());
+        return sb;
+    }
     
 }

@@ -8,6 +8,7 @@ package lab01_camilocespedes_eduardorey_luisaescobar;
 import Arbol.ArbolBinario;
 import Arbol.ArbolNA;
 import Inter.InterJSON;
+import java.io.File;
 import java.util.ArrayList;
 
 /**
@@ -16,12 +17,13 @@ import java.util.ArrayList;
  */
 public class Ventana extends javax.swing.JFrame {
 
-    private static ArrayList<InterJSON> masters;
-    private static ArrayList<ArbolBinario> ABBs;
-    private static ArrayList<ArbolNA> As;
+    private InterJSON master;
+    private ArrayList<ArbolBinario> ABBs;
+    private ArrayList<ArbolNA> As;
     public Ventana() {
         initComponents();
-        
+        master = new InterJSON();
+        ArrayList<User> users = master.Transformar();
     }
 
     /**
