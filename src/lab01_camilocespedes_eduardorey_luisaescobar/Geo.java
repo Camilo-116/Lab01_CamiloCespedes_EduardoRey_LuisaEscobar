@@ -27,8 +27,8 @@ public class Geo {
 
     public StringBuffer show() {
         StringBuffer sb = new StringBuffer("Geo: {\n");
-        sb.append("\t"+this.latitud+"\n");
-        sb.append("\t"+this.longitud+"\n");
+        sb.append("\t\t"+this.latitud+"\n");
+        sb.append("\t\t"+this.longitud+"\n\t}");
         return sb;
     }
     

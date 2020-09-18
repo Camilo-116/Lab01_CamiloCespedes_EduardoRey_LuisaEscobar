@@ -6,7 +6,7 @@
 package Arbol;
 
 import java.util.ArrayList;
-import lab01_camilocespedes_eduardorey_luisaescobar.User;
+import lab01_camilocespedes_eduardorey_luisaescobar.*;
 
 /**
  *
@@ -31,6 +31,45 @@ public class ArbolNA extends Arbol {
             }
         }
         return NR;
+    }
+
+    public NodoUser BuscarUsuario (int id){
+        for (int i = 0; i < NR.nodosU.length; i++) {
+            if (NR.nodosU[i].id == id){
+                return NR.nodosU[i];
+            }
+        }
+        return null;
+    }
+    
+    public NodoUser BuscarUsuario (String userName){
+        for (int i = 0; i < NR.nodosU.length; i++) {
+            if (NR.nodosU[i].userName.equals(userName)){
+                return NR.nodosU[i];
+            }
+        }
+        return null;
+    }
+    
+    public NodoUser BuscarUsuarioEmail (String email){
+        for (int i = 0; i < NR.nodosU.length; i++) {
+            if (NR.nodosU[i].email.equals(email)){
+                return NR.nodosU[i];
+            }
+        }
+        return null;
+    }
+    
+    public NodoPost BuscarPost(int id){
+        for (int i = 0; i < NR.nodosU.length; i++) {
+            for (int j = 0; j < NR.nodosU[i].nodosP.length; j++) {
+                if (NR.nodosU[i].nodosP[j].id == id){
+                    return NR.nodosU[i].nodosP[j];
+                }
+            }
+                
+        }
+        return null;
     }
 
 }

@@ -30,11 +30,11 @@ public class Company {
         return bs;
     }
 
-    StringBuffer show() {
+    public StringBuffer show() {
         StringBuffer sb = new StringBuffer("Company: {\n");
-        sb.append(this.name+"\n");
-        sb.append(this.catchPhrase+"\n");
-        sb.append(this.bs+"\n");
+        sb.append("\t"+this.name+"\n");
+        sb.append("\t"+this.catchPhrase+"\n");
+        sb.append("\t"+this.bs+"\n}");
         return sb;
     }
     

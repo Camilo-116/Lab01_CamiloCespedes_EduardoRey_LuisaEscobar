@@ -41,13 +41,13 @@ public class Address {
         return geo;
     }
 
-    StringBuffer show() {
+    public StringBuffer show() {
         StringBuffer sb = new StringBuffer("address: {\n");
         sb.append("\t"+this.street+"\n");
         sb.append("\t"+this.suite+"\n");
         sb.append("\t"+this.city+"\n");
         sb.append("\t"+this.zipCode+"\n");
-        sb.append(this.geo.show());
+        sb.append("\t"+this.geo.show()+"\n}");
         return sb;
     }
     
