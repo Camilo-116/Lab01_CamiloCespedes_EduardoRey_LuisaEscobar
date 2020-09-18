@@ -38,7 +38,7 @@ public class UserJSON implements Extraccion{
         ArrayList<Company> companies = GroupCompanies();
         
         ArrayList<User> u = new ArrayList();
-        for (int i = 0; i < ids.size()-1; i++) {
+        for (int i = 0; i < ids.size(); i++) {
             u.add(new User(ids.get(i), names.get(i), userNames.get(i), emails.get(i), addresses.get(i), phones.get(i), webSites.get(i), companies.get(i)));
         }
         return u;
@@ -52,7 +52,7 @@ public class UserJSON implements Extraccion{
         ArrayList<String> zipcodes = ExtraerTXT(LeerTexto(ruta),"(?<=,\\s{1,10}\"zipcode\": \")[\\d]{3,5}((\\s|-)[\\d]{3,5})?");
         ArrayList<Geo> geos = GroupGeos();
         ArrayList<Address> addresses = new ArrayList();
-        for (int i = 0; i < streets.size()-1; i++) {
+        for (int i = 0; i < streets.size(); i++) {
             addresses.add(new Address(streets.get(i), suites.get(i), cities.get(i), zipcodes.get(i), geos.get(i)));
         }
         return addresses;
@@ -63,7 +63,7 @@ public class UserJSON implements Extraccion{
         ArrayList<Float> latitudes = ExtraerFloat(LeerTexto(ruta), "(?<=\\{\\s{1,10}\"lat\": \")-?[\\d]{1,3}.[\\d]{3,5}");
         ArrayList<Float> longitudes = ExtraerFloat(LeerTexto(ruta), "(?<=,\\s{1,10}\"lng\": \")-?[\\d]{1,3}.[\\d]{3,5}");
         ArrayList<Geo> geos = new ArrayList();
-        for (int i = 0; i < latitudes.size()-1; i++) {
+        for (int i = 0; i < latitudes.size(); i++) {
             geos.add(new Geo(latitudes.get(i), longitudes.get(i)));
         }
         return geos;
@@ -75,7 +75,7 @@ public class UserJSON implements Extraccion{
         ArrayList<String> catchPhrases = ExtraerTXT(LeerTexto(ruta), "(?<=,\\s{1,10}\"catchPhrase\": \")[a-zA-Z]+((\\s|-)[a-zA-Z]+)*");
         ArrayList<String> bss = ExtraerTXT(LeerTexto(ruta), "(?<=,\\s{1,10}\"bs\": \")[a-zA-Z]+((\\s|-)[a-zA-Z]+)*");
         ArrayList<Company> companies = new ArrayList();
-        for (int i = 0; i < names.size()-1; i++) {
+        for (int i = 0; i < names.size(); i++) {
             companies.add(new Company(names.get(i), catchPhrases.get(i), bss.get(i)));
         }
         return companies;

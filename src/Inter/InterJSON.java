@@ -13,6 +13,7 @@ import lab01_camilocespedes_eduardorey_luisaescobar.*;
  * @author Camilo Cespedes
  */
 public class InterJSON {
+
     private UserJSON userJ;
     private PostJSON postJ;
     private CommentJSON commentJ;
@@ -22,19 +23,28 @@ public class InterJSON {
         this.postJ = new PostJSON();
         this.commentJ = new CommentJSON();
     }
-    
-    public ArrayList<User> Transformar(){
+
+    public ArrayList<Post> IncluirComments(ArrayList<Post> posts, ArrayList<Comment> comments) {
+        for (Post post : posts) {
+            for (Comment comment : comments) {
+                if (comment.getPostID() == post.getId()) {
+                    post.addComment(comment);
+                }
+            }
+        }
+        return posts;
+    }
+
+    public ArrayList<User> Transformar() {
         ArrayList<User> usersT = userJ.GroupProperties();
         ArrayList<Post> postsT = postJ.GroupProperties();
         ArrayList<Comment> commentsT = commentJ.GroupProperties();
+        postsT = IncluirComments(postsT, commentsT);
         for (User user : usersT) {
             for (Post post : postsT) {
-                for (Comment comment : commentsT) {
-                    if (comment.getPostID()== post.getId())
-                        post.addComment(comment);
-                }
-                if(post.getUserID() == user.getId())
+                if (post.getUserID() == user.getId()) {
                     user.addPost(post);
+                }
             }
         }
         return usersT;

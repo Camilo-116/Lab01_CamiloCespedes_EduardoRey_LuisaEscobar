@@ -33,7 +33,7 @@ public class CommentJSON implements Extraccion{
         ArrayList<String> bodies = ExtraerTXT(LeerTexto(ruta), "(?<=,\\s{1,10}\"body\": \")[\\w]+((\\s|\\\\)\\w+)*");
         
         ArrayList<Comment> comments = new ArrayList();
-        for (int i = 0; i < ids.size() - 1; i++) {
+        for (int i = 0; i < ids.size(); i++) {
             comments.add(new Comment(postIDs.get(i), ids.get(i), names.get(i), emails.get(i), bodies.get(i)));
         }
         return comments;

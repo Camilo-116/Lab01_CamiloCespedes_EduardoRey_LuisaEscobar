@@ -30,7 +30,7 @@ public class Ventana extends javax.swing.JFrame {
         master = new InterJSON();
         cl = (CardLayout) panelDeVisualizacion.getLayout();
         ArrayList<User> users = master.Transformar();  //Se crea el arreglo de usuarios con todos sus atributos, incluyendo posts y comentarios
-        users.get(4).show();
+        //users.get(4).show();
         //System.out.println(users.get(6).getUserName());
     }
 

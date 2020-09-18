@@ -34,7 +34,7 @@ public class PostJSON implements Extraccion {
         ArrayList<String> bodies = ExtraerTXT(LeerTexto(ruta), "(?<=,\\s{1,10}\"body\": \")[\\w]+((\\s|\\\\)\\w+)*");;
         
         ArrayList<Post> posts = new ArrayList();
-        for (int i = 0; i < ids.size() - 1; i++) {
+        for (int i = 0; i < ids.size(); i++) {
             posts.add(new Post(userIDs.get(i), ids.get(i), tittles.get(i), bodies.get(i)));
         }
         return posts;

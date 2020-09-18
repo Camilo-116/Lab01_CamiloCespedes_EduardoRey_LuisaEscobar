@@ -32,9 +32,9 @@ public class Company {
 
     StringBuffer show() {
         StringBuffer sb = new StringBuffer("Company: {\n");
-        sb.append(this.name);
-        sb.append(this.catchPhrase);
-        sb.append(this.bs);
+        sb.append(this.name+"\n");
+        sb.append(this.catchPhrase+"\n");
+        sb.append(this.bs+"\n");
         return sb;
     }
     
