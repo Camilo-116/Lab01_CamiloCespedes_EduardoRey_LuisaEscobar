@@ -5,10 +5,17 @@
  */
 package Arbol;
 
+import java.util.ArrayList;
+import lab01_camilocespedes_eduardorey_luisaescobar.User;
+
 /**
  *
  * @author Camilo Cespedes
  */
 public class ArbolBinario extends Arbol{
+
+    public ArbolBinario(ArrayList<User> users) {
+        super(users);
+    }
     
 }

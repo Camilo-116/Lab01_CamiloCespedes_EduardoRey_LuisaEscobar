@@ -5,11 +5,9 @@
  */
 package lab01_camilocespedes_eduardorey_luisaescobar;
 
-import Arbol.ArbolBinario;
 import Arbol.ArbolNA;
 import Inter.InterJSON;
 import java.awt.CardLayout;
-import java.io.File;
 import java.util.ArrayList;
 
 /**
@@ -19,8 +17,7 @@ import java.util.ArrayList;
 public class Ventana extends javax.swing.JFrame {
 
     private InterJSON master;
-    private ArrayList<ArbolBinario> ABBs;
-    private ArrayList<ArbolNA> As;
+    private ArbolNA As;
     private CardLayout cl;
     public Ventana() {
         initComponents();
@@ -29,7 +26,7 @@ public class Ventana extends javax.swing.JFrame {
         setResizable(false);
         master = new InterJSON();
         cl = (CardLayout) panelDeVisualizacion.getLayout();
-        ArrayList<User> users = master.Transformar();  //Se crea el arreglo de usuarios con todos sus atributos, incluyendo posts y comentarios
+        As = new ArbolNA(master.Transformar());  //Se crea el arreglo de usuarios con todos sus atributos, incluyendo posts y comentarios, y se envia este al Árbol que se creará
         //users.get(4).show();
         //System.out.println(users.get(6).getUserName());
     }
@@ -86,7 +83,6 @@ public class Ventana extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(1280, 720));
-        setPreferredSize(new java.awt.Dimension(1280, 720));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -272,9 +268,6 @@ public class Ventana extends javax.swing.JFrame {
         getContentPane().add(panelDeBusqueda3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 420, -1, 180));
 
         Background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/bg.png"))); // NOI18N
-        Background.setMaximumSize(new java.awt.Dimension(1280, 720));
-        Background.setMinimumSize(new java.awt.Dimension(1280, 720));
-        Background.setPreferredSize(new java.awt.Dimension(1280, 720));
         getContentPane().add(Background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
