@@ -33,7 +33,7 @@ public class InterJSON {
                     if (comment.getPostID()== post.getId())
                         post.addComment(comment);
                 }
-                if(post.getUserID() == post.getId())
+                if(post.getUserID() == user.getId())
                     user.addPost(post);
             }
         }

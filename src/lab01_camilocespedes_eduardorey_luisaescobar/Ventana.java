@@ -8,6 +8,7 @@ package lab01_camilocespedes_eduardorey_luisaescobar;
 import Arbol.ArbolBinario;
 import Arbol.ArbolNA;
 import Inter.InterJSON;
+import java.awt.CardLayout;
 import java.io.File;
 import java.util.ArrayList;
 
@@ -20,14 +21,17 @@ public class Ventana extends javax.swing.JFrame {
     private InterJSON master;
     private ArrayList<ArbolBinario> ABBs;
     private ArrayList<ArbolNA> As;
+    private CardLayout cl;
     public Ventana() {
         initComponents();
         setSize(1285,750);
         setLocationRelativeTo(null);
         setResizable(false);
         master = new InterJSON();
+        cl = (CardLayout) panelDeVisualizacion.getLayout();
         ArrayList<User> users = master.Transformar();  //Se crea el arreglo de usuarios con todos sus atributos, incluyendo posts y comentarios
-        //users.get(4).show();
+        users.get(4).show();
+        //System.out.println(users.get(6).getUserName());
     }
 
     /**
@@ -39,7 +43,7 @@ public class Ventana extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        PaneldeVisualización = new javax.swing.JPanel();
+        panelDeVisualizacion = new javax.swing.JPanel();
         Posts = new javax.swing.JPanel();
         scrollPosts = new javax.swing.JScrollPane();
         ListaPosts = new javax.swing.JList<>();
@@ -62,7 +66,7 @@ public class Ventana extends javax.swing.JFrame {
         InfoAdicional = new javax.swing.JLabel();
         scrollListaInfoUser = new javax.swing.JScrollPane();
         ListaInfoUser = new javax.swing.JList<>();
-        PaneldeBusqueda1 = new javax.swing.JPanel();
+        panelDeBusqueda1 = new javax.swing.JPanel();
         BuscarUsuario = new javax.swing.JLabel();
         BuscarID = new javax.swing.JLabel();
         buscarUserName = new javax.swing.JLabel();
@@ -71,7 +75,7 @@ public class Ventana extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         buscarUser = new javax.swing.JButton();
         separador1 = new javax.swing.JSeparator();
-        PaneldeBusqueda3 = new javax.swing.JPanel();
+        panelDeBusqueda3 = new javax.swing.JPanel();
         BuscarPost = new javax.swing.JLabel();
         BuscarIdPost = new javax.swing.JLabel();
         idPost = new javax.swing.JTextField();
@@ -86,7 +90,7 @@ public class Ventana extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        PaneldeVisualización.setLayout(new java.awt.CardLayout());
+        panelDeVisualizacion.setLayout(new java.awt.CardLayout());
 
         ListaPosts.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -97,6 +101,11 @@ public class Ventana extends javax.swing.JFrame {
 
         verPost.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         verPost.setText("Ver publicación");
+        verPost.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                verPostActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout PostsLayout = new javax.swing.GroupLayout(Posts);
         Posts.setLayout(PostsLayout);
@@ -121,7 +130,7 @@ public class Ventana extends javax.swing.JFrame {
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
-        PaneldeVisualización.add(Posts, "Ps");
+        panelDeVisualizacion.add(Posts, "Ps");
 
         PostIndividual.setMaximumSize(new java.awt.Dimension(734, 640));
         PostIndividual.setMinimumSize(new java.awt.Dimension(734, 640));
@@ -163,7 +172,7 @@ public class Ventana extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        PaneldeVisualización.add(PostIndividual, "Pi");
+        panelDeVisualizacion.add(PostIndividual, "Pi");
 
         UsuarioIndividual.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -207,50 +216,60 @@ public class Ventana extends javax.swing.JFrame {
 
         UsuarioIndividual.add(scrollListaInfoUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 320, 690, 280));
 
-        PaneldeVisualización.add(UsuarioIndividual, "Ui");
+        panelDeVisualizacion.add(UsuarioIndividual, "Ui");
 
-        getContentPane().add(PaneldeVisualización, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 40, 780, 640));
+        getContentPane().add(panelDeVisualizacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 40, 780, 640));
 
-        PaneldeBusqueda1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        panelDeBusqueda1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         BuscarUsuario.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         BuscarUsuario.setText("Buscar Usuario:");
-        PaneldeBusqueda1.add(BuscarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 346, 30));
+        panelDeBusqueda1.add(BuscarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 346, 30));
 
         BuscarID.setText("ID de Usuario:");
-        PaneldeBusqueda1.add(BuscarID, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 53, -1, -1));
+        panelDeBusqueda1.add(BuscarID, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 53, -1, -1));
 
         buscarUserName.setText("Nombre de Usuario:");
-        PaneldeBusqueda1.add(buscarUserName, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 105, -1, -1));
-        PaneldeBusqueda1.add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(166, 50, 129, -1));
-        PaneldeBusqueda1.add(userName, new org.netbeans.lib.awtextra.AbsoluteConstraints(166, 102, 192, -1));
+        panelDeBusqueda1.add(buscarUserName, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 105, -1, -1));
+        panelDeBusqueda1.add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(166, 50, 129, -1));
+        panelDeBusqueda1.add(userName, new org.netbeans.lib.awtextra.AbsoluteConstraints(166, 102, 180, -1));
 
         jLabel5.setText("ó");
-        PaneldeBusqueda1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(99, 79, -1, -1));
+        panelDeBusqueda1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(99, 79, -1, -1));
 
         buscarUser.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         buscarUser.setText("Buscar Usuario");
-        PaneldeBusqueda1.add(buscarUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(113, 137, 159, -1));
-        PaneldeBusqueda1.add(separador1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 42, 370, 140));
+        buscarUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarUserActionPerformed(evt);
+            }
+        });
+        panelDeBusqueda1.add(buscarUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(113, 137, 159, -1));
+        panelDeBusqueda1.add(separador1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 42, 370, 140));
 
-        getContentPane().add(PaneldeBusqueda1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 370, 180));
+        getContentPane().add(panelDeBusqueda1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 370, 180));
 
-        PaneldeBusqueda3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        panelDeBusqueda3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         BuscarPost.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         BuscarPost.setText("Buscar Publicación:");
-        PaneldeBusqueda3.add(BuscarPost, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 346, 30));
+        panelDeBusqueda3.add(BuscarPost, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 346, 30));
 
         BuscarIdPost.setText("ID de Publicación:");
-        PaneldeBusqueda3.add(BuscarIdPost, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 76, -1, 20));
-        PaneldeBusqueda3.add(idPost, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 70, 129, 30));
+        panelDeBusqueda3.add(BuscarIdPost, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 76, -1, 20));
+        panelDeBusqueda3.add(idPost, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 70, 129, 30));
 
         buscarPost.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         buscarPost.setText("Buscar Publicación");
-        PaneldeBusqueda3.add(buscarPost, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, 190, -1));
-        PaneldeBusqueda3.add(separador2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 42, 370, 140));
+        buscarPost.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarPostActionPerformed(evt);
+            }
+        });
+        panelDeBusqueda3.add(buscarPost, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, 190, -1));
+        panelDeBusqueda3.add(separador2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 42, 370, 140));
 
-        getContentPane().add(PaneldeBusqueda3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 420, -1, 180));
+        getContentPane().add(panelDeBusqueda3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 420, -1, 180));
 
         Background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/bg.png"))); // NOI18N
         Background.setMaximumSize(new java.awt.Dimension(1280, 720));
@@ -260,6 +279,18 @@ public class Ventana extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void verPostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verPostActionPerformed
+        cl.show(panelDeVisualizacion, "Pi");
+    }//GEN-LAST:event_verPostActionPerformed
+
+    private void buscarPostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarPostActionPerformed
+        cl.show(panelDeVisualizacion, "Pi");
+    }//GEN-LAST:event_buscarPostActionPerformed
+
+    private void buscarUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarUserActionPerformed
+        cl.show(panelDeVisualizacion, "Ui");
+    }//GEN-LAST:event_buscarUserActionPerformed
 
     /**
      * @param args the command line arguments
@@ -279,9 +310,6 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JList<String> ListaInfoUser;
     private javax.swing.JList<String> ListaPosts;
     private javax.swing.JLabel NombreDeUsuario;
-    private javax.swing.JPanel PaneldeBusqueda1;
-    private javax.swing.JPanel PaneldeBusqueda3;
-    private javax.swing.JPanel PaneldeVisualización;
     private javax.swing.JTextArea Post;
     private javax.swing.JPanel PostIndividual;
     private javax.swing.JPanel Posts;
@@ -294,6 +322,9 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JTextField idPost;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel nombre;
+    private javax.swing.JPanel panelDeBusqueda1;
+    private javax.swing.JPanel panelDeBusqueda3;
+    private javax.swing.JPanel panelDeVisualizacion;
     private javax.swing.JScrollPane scrollComments;
     private javax.swing.JScrollPane scrollListaInfoUser;
     private javax.swing.JScrollPane scrollPost;
