@@ -114,6 +114,7 @@ public class Ventana extends javax.swing.JFrame {
         idPost = new javax.swing.JTextField();
         buscarPost = new javax.swing.JButton();
         separador2 = new javax.swing.JSeparator();
+        jLabel1 = new javax.swing.JLabel();
         Background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -123,6 +124,8 @@ public class Ventana extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         panelDeVisualizacion.setLayout(new java.awt.CardLayout());
+
+        Posts.setBackground(new java.awt.Color(245, 244, 236));
 
         posts.setColumns(20);
         posts.setFont(new java.awt.Font("Monospaced", 0, 16)); // NOI18N
@@ -149,6 +152,7 @@ public class Ventana extends javax.swing.JFrame {
 
         panelDeVisualizacion.add(Posts, "Ps");
 
+        PostIndividual.setBackground(new java.awt.Color(245, 244, 236));
         PostIndividual.setMaximumSize(new java.awt.Dimension(734, 640));
         PostIndividual.setMinimumSize(new java.awt.Dimension(734, 640));
 
@@ -202,6 +206,7 @@ public class Ventana extends javax.swing.JFrame {
 
         panelDeVisualizacion.add(PostIndividual, "Pi");
 
+        UsuarioIndividual.setBackground(new java.awt.Color(245, 244, 236));
         UsuarioIndividual.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         IconoUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/UserIcon.png"))); // NOI18N
@@ -256,8 +261,11 @@ public class Ventana extends javax.swing.JFrame {
 
         getContentPane().add(panelDeVisualizacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 40, 780, 640));
 
+        panelDeBusqueda1.setBackground(new java.awt.Color(245, 244, 236));
+        panelDeBusqueda1.setForeground(new java.awt.Color(245, 244, 236));
         panelDeBusqueda1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        BuscarUsuario.setBackground(new java.awt.Color(245, 244, 236));
         BuscarUsuario.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         BuscarUsuario.setText("Buscar Usuario:");
         panelDeBusqueda1.add(BuscarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 346, 30));
@@ -281,10 +289,15 @@ public class Ventana extends javax.swing.JFrame {
             }
         });
         panelDeBusqueda1.add(buscarUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(113, 137, 159, -1));
+
+        separador1.setBackground(new java.awt.Color(245, 244, 236));
+        separador1.setForeground(new java.awt.Color(245, 244, 236));
         panelDeBusqueda1.add(separador1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 42, 370, 140));
 
-        getContentPane().add(panelDeBusqueda1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 370, 180));
+        getContentPane().add(panelDeBusqueda1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, 370, 180));
 
+        panelDeBusqueda2.setBackground(new java.awt.Color(245, 244, 236));
+        panelDeBusqueda2.setForeground(new java.awt.Color(245, 244, 236));
         panelDeBusqueda2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         BuscarPost.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -305,7 +318,10 @@ public class Ventana extends javax.swing.JFrame {
         panelDeBusqueda2.add(buscarPost, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, 190, -1));
         panelDeBusqueda2.add(separador2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 42, 370, 140));
 
-        getContentPane().add(panelDeBusqueda2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 420, -1, 180));
+        getContentPane().add(panelDeBusqueda2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 480, -1, 180));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/logo.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, -1, -1));
 
         Background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/bg.png"))); // NOI18N
         getContentPane().add(Background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -400,6 +416,7 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JTextArea infoUsuario;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
