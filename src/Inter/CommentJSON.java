@@ -6,42 +6,50 @@
 package Inter;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.regex.*;
-import lab01_camilocespedes_eduardorey_luisaescobar.Comment;
+import lab01_camilocespedes_eduardorey_luisaescobar.*;
+
 
 /**
- *
- * @author Camilo Cespedes
+ * Clase CommentJSON que interpreta la información del archivo TXT correspondiente a los Comments
+ * 
+ * @author Camilo Cespedes, Luisa Escobar, Eduardo Rey
  */
-
-//Clase CommentJSON que interpreta la información del archivo TXT correspondiente a los Comments
 public class CommentJSON implements Extraccion{
     File ruta;//Variable que indica la ruta hacia el archivo a interpretar
 
-    //COnstructor de la clase CommentJSON
+    /**
+     * Constructor de la clase CommentJSON
+     */
     public CommentJSON() {
         ruta = new File("src" + File.separator + "TXTs" + File.separator + "Comments.txt");
     }
     
-    //Método que extrae los atributos de cada comentario y los agrupa para crear objetos de tipo Comment e irlos agregando al arreglo de comentarios que se retornará
-    public ArrayList<Comment> GroupProperties() {
-        ArrayList<Integer> postIDs = ExtraerInts(LeerTexto(ruta), "(?<=\\{\\s{1,10}\"postId\": )[\\d]{1,3}");
-        ArrayList<Integer> ids = ExtraerInts(LeerTexto(ruta), "(?<=,\\s{1,10}\"id\": )[\\d]{1,3}");
-        ArrayList<String> emails = ExtraerTXT(LeerTexto(ruta), "(?<=,\\s{1,10}\"email\": \")[a-zA-Z-_\\.]+@[a-zA-Z-]+.[a-z]{2,4}");
-        ArrayList<String> names = ExtraerTXT(LeerTexto(ruta), "(?<=,\\s{1,10}\"name\": \")[\\w]+(\\s\\w+)*");
-        ArrayList<String> bodies = ExtraerTXT(LeerTexto(ruta), "(?<=,\\s{1,10}\"body\": \")[\\w]+((\\s|\\\\)\\w+)*");
+    /**
+     * Método que extrae los atributos de cada comentario y los agrupa para crear objetos de tipo Comment e irlos agregando al arreglo de comentarios que se retornará
+     * @return Primer elemento de una lista enlazada con elementos Comment
+     */
+    public Lista<Comment> GroupProperties() {
+        Lista<Integer> postIDs = ExtraerInts(LeerTexto(ruta), "(?<=\\{\\s{1,10}\"postId\": )[\\d]{1,3}");
+        Lista<Integer> ids = ExtraerInts(LeerTexto(ruta), "(?<=,\\s{1,10}\"id\": )[\\d]{1,3}");
+        Lista<String> emails = ExtraerTXT(LeerTexto(ruta), "(?<=,\\s{1,10}\"email\": \")[a-zA-Z-_\\.]+@[a-zA-Z-]+.[a-z]{2,4}");
+        Lista<String> names = ExtraerTXT(LeerTexto(ruta), "(?<=,\\s{1,10}\"name\": \")[\\w]+(\\s\\w+)*");
+        Lista<String> bodies = ExtraerTXT(LeerTexto(ruta), "(?<=,\\s{1,10}\"body\": \")[\\w]+((\\s|\\\\)\\w+)*");
         
-        ArrayList<Comment> comments = new ArrayList();
-        for (int i = 0; i < ids.size(); i++) {
-            comments.add(new Comment(postIDs.get(i), ids.get(i), names.get(i), emails.get(i), bodies.get(i)));
+        Lista<Comment> comments = new Lista();
+        Lista<Integer> i = ids, pi = postIDs;
+        Lista<String> e = emails, n = names, b = bodies;
+        while (i.linkOb != null) {
+            comments.add(new Comment(pi.getObject(), i.getObject(), n.getObject(), e.getObject(), b.getObject()));
+            i = i.linkOb; pi = pi.linkOb; e = e.linkOb; n = n.linkOb; b = b.linkOb;
         }
+        comments.add(new Comment(pi.getObject(), i.getObject(), n.getObject(), e.getObject(), b.getObject()));
         return comments;
     }
 
     @Override
-    public ArrayList<Integer> ExtraerInts(StringBuffer texto, String pattern) {
-        ArrayList<Integer> integers = new ArrayList();
+    public Lista<Integer> ExtraerInts(StringBuffer texto, String pattern) {
+        Lista<Integer> integers = new Lista();
         Pattern p = Pattern.compile(pattern);
         Matcher m = p.matcher(texto);
         while (m.find()) {
@@ -51,8 +59,8 @@ public class CommentJSON implements Extraccion{
     }
 
     @Override
-    public ArrayList<String> ExtraerTXT(StringBuffer texto, String pattern) {
-        ArrayList<String> txt = new ArrayList();
+    public Lista<String> ExtraerTXT(StringBuffer texto, String pattern) {
+        Lista<String> txt = new Lista();
         Pattern p = Pattern.compile(pattern);
         Matcher m = p.matcher(texto);
         while (m.find()) {

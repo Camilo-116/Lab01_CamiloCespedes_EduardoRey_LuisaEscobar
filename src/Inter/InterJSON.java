@@ -5,12 +5,13 @@
  */
 package Inter;
 
-import java.util.ArrayList;
 import lab01_camilocespedes_eduardorey_luisaescobar.*;
 
 /**
+ * Clase que actúa como interprete de los archivos que contienen la información
+ * que se debe incluir en el árbol
  *
- * @author Camilo Cespedes
+ * @author Camilo Cespedes, Luisa Escobar, Eduardo Rey
  */
 public class InterJSON {
 
@@ -18,35 +19,109 @@ public class InterJSON {
     private PostJSON postJ;
     private CommentJSON commentJ;
 
+    /**
+     * Constructor de la clase InterJSON
+     */
     public InterJSON() {
         this.userJ = new UserJSON();
         this.postJ = new PostJSON();
         this.commentJ = new CommentJSON();
     }
 
-    public ArrayList<Post> IncluirComments(ArrayList<Post> posts, ArrayList<Comment> comments) {
-        for (Post post : posts) {
-            for (Comment comment : comments) {
-                if (comment.getPostID() == post.getId()) {
-                    post.addComment(comment);
+    /**
+     * Método que relaciona cada objeto Comment con su correspondiente Post
+     *
+     * @param posts Primer elemento de lista enlazada de objetos Post a los
+     * cuales se agregarán objetos Comment
+     * @param comments Primer elemento de lista enlazada de objetos Comment que
+     * serán agregados a objetos Post
+     * @return Primer elemento de una lista enlazada que contiene objetos Post
+     * con sus respectivos objetos Comment agregados
+     */
+    public Lista<Post> IncluirComments(Lista<Post> posts, Lista<Comment> comments) {
+        Lista<Post> po = posts;
+        Lista<Comment> c = comments;
+        while (po != null) {
+            c = comments;
+            while (c != null) {
+                if (po.getObject().getId() == c.getObject().getPostID()) {
+                    po.getObject().addComment(c.getObject());
                 }
+                c = c.linkOb;
             }
+            po = po.linkOb;
         }
         return posts;
     }
 
-    public ArrayList<User> Transformar() {
-        ArrayList<User> usersT = userJ.GroupProperties();
-        ArrayList<Post> postsT = postJ.GroupProperties();
-        ArrayList<Comment> commentsT = commentJ.GroupProperties();
+    /**
+     * Método que unifica las listas enlazadas de User y Post de forma que los
+     * elementos Post queden relacionados con sus correspondientes User
+     *
+     * @return Lista enlazada de elementos User, los cuales tienen cada uno sus
+     * respectivos Post relacionados, y estos a su vez tienen sus respectivos
+     * Comment relacionados
+     */
+    public Lista<User> Transformar() {
+        Lista<User> usersT = userJ.GroupProperties();
+        Lista<Post> postsT = postJ.GroupProperties();
+        Lista<Comment> commentsT = commentJ.GroupProperties();
+        
         postsT = IncluirComments(postsT, commentsT);
-        for (User user : usersT) {
-            for (Post post : postsT) {
-                if (post.getUserID() == user.getId()) {
-                    user.addPost(post);
+        Lista<User> u = usersT;
+        Lista<Post> p = postsT;
+        while (u != null) {
+            p = postsT;
+            while (p != null) {
+                if (u.getObject().getId() == p.getObject().getUserID()) {
+                    u.getObject().addPost(p.getObject());
                 }
+                p = p.linkOb;
             }
+            u = u.linkOb;
         }
         return usersT;
+    }
+
+    public UserJSON getUserJ() {
+        return userJ;
+    }
+
+    public PostJSON getPostJ() {
+        return postJ;
+    }
+
+    public CommentJSON getCommentJ() {
+        return commentJ;
+    }
+
+    public void printComments() {
+        Lista<Comment> c = commentJ.GroupProperties();
+        Lista<Comment> p = c;
+        while (p.linkOb != null) {
+            p.getObject().show();
+            p = p.linkOb;
+        }
+        p.getObject().show();
+    }
+
+    public void printUsers() {
+        Lista<User> u = userJ.GroupProperties();
+        Lista<User> p = u;
+        while (p.linkOb != null) {
+            p.getObject().show();
+            p = p.linkOb;
+        }
+        p.getObject().show();
+    }
+
+    public void printPosts() {
+        Lista<Post> po = postJ.GroupProperties();
+        Lista<Post> p = po;
+        while (p.linkOb != null) {
+            p.getObject().show();
+            p = p.linkOb;
+        }
+        p.getObject().show();
     }
 }

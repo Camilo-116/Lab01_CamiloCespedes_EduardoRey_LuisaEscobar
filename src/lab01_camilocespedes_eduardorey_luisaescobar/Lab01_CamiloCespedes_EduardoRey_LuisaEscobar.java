@@ -5,10 +5,6 @@
  */
 package lab01_camilocespedes_eduardorey_luisaescobar;
 
-import Arbol.ArbolNA;
-import Arbol.ArbolBinario;
-import Inter.*;
-import java.util.ArrayList;
 
 /**
  *
@@ -17,8 +13,12 @@ import java.util.ArrayList;
 public class Lab01_CamiloCespedes_EduardoRey_LuisaEscobar {
 
     
-    private static Ventana ventana;
+    private static Ventana ventana;   //Ventana que permitirá visualizar el programa
 
+    /**
+     * Método principal del programa
+     * @param args .
+     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

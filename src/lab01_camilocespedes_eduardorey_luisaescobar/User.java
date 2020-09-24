@@ -5,20 +5,32 @@
  */
 package lab01_camilocespedes_eduardorey_luisaescobar;
 
-import java.util.ArrayList;
 
 /**
- *
+ * Clase que representa un usuario
  * @author Camilo Cespedes
  */
 public class User {
+    /*
+    Atributos
+    */
     private int id;
     private String name, userName, email, phone, webSite;
     private Address address;
     private Company company;
-    private ArrayList<Post> posts;
+    private Lista<Post> ptrPosts;   //Primer elemento de la lista de elementos Post correspondientes al usuario
     
-    
+    /**
+     * Constructor no vacío de la clase User
+     * @param id id del User
+     * @param name nombre del User
+     * @param userName nombre de usuario del User
+     * @param email email del User
+     * @param address direccion del User
+     * @param phone telefono del User
+     * @param webSite sitio web del user
+     * @param company compañía del User
+     */
     public User(int id, String name, String userName, String email, Address address, String phone, String webSite, Company company) {
         this.id = id;
         this.name = name;
@@ -28,7 +40,7 @@ public class User {
         this.webSite = webSite;
         this.address = address;
         this.company = company;
-        posts = new ArrayList();
+        ptrPosts = new Lista();
     }
 
     public int getId() {
@@ -63,15 +75,15 @@ public class User {
         return company;
     }
 
-    public ArrayList<Post> getPosts() {
-        return posts;
+    public Lista<Post> getPosts() {
+        return ptrPosts;
     }
 
     public void addPost(Post post) {
-        this.posts.add(post);
+        this.ptrPosts.add(post);
     }
 
-    void show() {
+    public void show() {
         System.out.println(this.id);
         System.out.println(this.name);
         System.out.println(this.userName);
@@ -80,9 +92,9 @@ public class User {
         System.out.println(this.phone);
         System.out.println(this.webSite);
         System.out.println(this.company.show());
-        for (Post post : posts) {
+        /*for (Post post : ptrPosts) {
             post.show();
-        }
+        }*/
     }
 
     

@@ -6,12 +6,21 @@
 package lab01_camilocespedes_eduardorey_luisaescobar;
 
 /**
- *
+ * Clase que representa una compañía perteneciente a user
  * @author Camilo Cespedes
  */
 public class Company {
+    /*
+    Atributos
+    */
     private String name, catchPhrase, bs;
 
+    /**
+     * Constructor no vacío de la clase Company
+     * @param name Nombre de compañia
+     * @param catchPhrase catchPhrase de compañía
+     * @param bs bs de compañía
+     */
     public Company(String name, String catchPhrase, String bs) {
         this.name = name;
         this.catchPhrase = catchPhrase;

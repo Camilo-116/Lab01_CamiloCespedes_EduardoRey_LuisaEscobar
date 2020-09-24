@@ -6,16 +6,33 @@
 package Inter;
 
 import java.io.File;
-import java.util.ArrayList;
+import lab01_camilocespedes_eduardorey_luisaescobar.Lista;
+
+
 
 /**
- *
- * @author Camilo Cespedes
+ * Interfaz que indica los métodos a usar para realizar acciones con los archivos a interpretar
+ * @author Camilo Cespedes, Luisa Escobar, Eduardo Rey
  */
-
-//Interfaz Extraccion que indica los métodos a usar para realizar acciones con los archivos a interpretar
 public interface Extraccion {
-    public ArrayList<Integer> ExtraerInts(StringBuffer texto, String pattern); //Metodo para extraer las coincidencias de enteros de cierta cadena de texto coincidentes con un patrón. Retorna un arreglo de objetos de tipo Integer
-    public ArrayList<String> ExtraerTXT(StringBuffer texto, String pattern);//Metodo para extraer las coincidencias de cadenas de texto coincidentes con un patrón. Retorna un arreglo de objetos tipo String
-    public StringBuffer LeerTexto(File file);//Método que realiza la lectura de un archivo de texto ubicado en la direccion <<file>> de tipo File, para su posterior conversión a StringBuffer, conservando su estructura y saltos de línea
+    /**
+     * Metodo para extraer las coincidencias de objetos Integer de cierta cadena de texto respecto a un patrón dado 
+     * @param texto Texto a interpretar
+     * @param pattern Patrón establecido para hallar coincidencias en el texto
+     * @return Primer elemento de una lista enlazada de objetos Integer
+     */
+    public Lista<Integer> ExtraerInts(StringBuffer texto, String pattern); 
+    /**
+     * Metodo para extraer las coincidencias de objetos String de cierta cadena de texto respecto a un patrón dado 
+     * @param texto Texto a interpretar
+     * @param pattern Patrón establecido para hallar coincidencias en el texto
+     * @return Primer elemento de una lista enlazada de objetos String
+     */
+    public Lista<String> ExtraerTXT(StringBuffer texto, String pattern);
+    /**
+     * Método que realiza la lectura de un archivo de texto ubicado en una direccion de tipo File, para su posterior conversión a StringBuffer, conservando su estructura y saltos de línea
+     * @param file Ruta del archivo a leer
+     * @return Objeto StringBuffer que contiene la información contenida en el archivo intrpretado
+     */
+    public StringBuffer LeerTexto(File file);
 }

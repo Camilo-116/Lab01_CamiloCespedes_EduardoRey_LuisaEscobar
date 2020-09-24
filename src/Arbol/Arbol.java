@@ -5,79 +5,149 @@
  */
 package Arbol;
 
-import java.util.ArrayList;
-import lab01_camilocespedes_eduardorey_luisaescobar.Address;
-import lab01_camilocespedes_eduardorey_luisaescobar.Company;
-import lab01_camilocespedes_eduardorey_luisaescobar.User;
-
+import lab01_camilocespedes_eduardorey_luisaescobar.*;
 /**
- *
- * @author Camilo Cespedes
+ *Clase que describe la estructura general de un árbol
+ * @author Camilo Cespedes, Luisa Escobar, Eduardo Rey
  */
 public abstract class Arbol {
 
-    ArrayList<User> users;
-    NodoRaiz NR;
+    Lista<User> users;  //Primer elemento de una lista enlazada de objetos User, los cuales corresponden a aquellos que serán agregados al árbol
+    NodoRaiz NR;   //Primero nodo del árbol, su raíz
 
-    public Arbol(ArrayList<User> users) {
-        this.users = users;
+    /**
+     * Constructor de la clase Arbol
+     * @param ptrUsers Primer elemento de una lista enlazada de objetos User 
+     */
+    public Arbol(Lista<User> ptrUsers) {
+        users = ptrUsers;
         this.NR = new NodoRaiz();
     }
-
+    
+    /**
+     * Clase que describe la estructura de un NodoRaiz, primer nodo de un Arbol
+     * @author Camilo Cespedes, Luisa Escobar, Eduardo Rey
+     */
     public class NodoRaiz {
 
-        NodoUser[] nodosU;
+        NodoUser linkU;   //Apuntador correspondiente al primer objeto NodoUser de la lista de hijos del NodoRaiz
 
+        /**
+         * COnstructor de la clase NodoRaiz
+         */
         public NodoRaiz() {
-        }
-
-        public void setNodosU(int usersLenght) {
-            nodosU = new NodoUser[usersLenght];
-        }
-
-        public NodoUser getNodoU(int i) {
-            return nodosU[i];
+            linkU = null;
         }
         
-        public void setNodoU(int i, NodoUser nodoU) {
-            this.nodosU[i] = nodoU;
+        /**
+         * Método mediante el cual se asigna un NodoUser al atributo linkU del la raiz del Arbol
+         * @param user Objeto User que se interpretará para traducirse en un NodoUser y ser agregado a la lista
+         * @return Raiz del Arbol
+         */
+        public NodoRaiz setNodoU(User user) {
+            if (linkU == null) {
+                linkU = new NodoUser(user);
+            }else{
+                NodoUser p = linkU;
+                while (p.linkU != null){
+                    p = p.linkU;
+                }
+                p.linkU = new NodoUser(user);
+            }
+            return this;
+        }
+        
+        /**
+         * Método que permite conocer el número de hijos de un NodoUser
+         * @param NU NodoUser del cual se quiere conocer su número de hijos
+         * @return Entero correspondiente al número de hijos del NodoUser
+         */
+        public int numNodos(NodoUser NU){
+            if (NU.linkU == null){
+                return 0;
+            }else{
+                return 1 + numNodos(NU.linkU);
+            }
         }
 
-        public NodoUser[] getNodosU() {
-            return nodosU;
+        public NodoUser getUser(int i) {
+            NodoUser u = this.linkU;
+            int cont = 0;
+            while (u != null && cont < i){
+                u = u.linkU;
+                cont++;
+            }
+            return u;
         }
 
+        public NodoUser getLinkU() {
+            return linkU;
+        }
         
     }
 
+    /**
+     * Clase que describe la estructura de un NodoUser
+     */
     public class NodoUser {
-
+        
+        /*
+        Variables que representan los atributos de un objeto User, para poderlo traducir en un objeto NodoUser
+        */
         int id;
         String name, userName, email, phone, webSite;
         Address address;
         Company company;
-        NodoPost[] nodosP;
+        NodoUser linkU;   //Apuntador correspondiente al siguiente elemento NodoUser de la lista enlazada
+        NodoPost linkP;   //Apuntador correspondiente al primer hijo NodoPost del NodoUser
 
+        /**
+         * Constructor vacío de la clase NodoUser
+         */
         public NodoUser() {
         }
 
-        
-        public NodoUser(int postsLenght, int id, String name, String userName, String email, String phone, String webSite, Address address, Company company) {
-            nodosP = new NodoPost[postsLenght];
-            this.id = id;
-            this.name = name;
-            this.userName = userName;
-            this.email = email;
-            this.phone = phone;
-            this.webSite = webSite;
-            this.address = address;
-            this.company = company;
+        /**
+         * Constructor no vacío de la clase NodoUser, usado para agregar nuevos elementos a la lista enlazada
+         * @param user Objeto User que se interpretará para traducirse en un NodoUser
+         */
+        public NodoUser(User user) {
+            linkP = new NodoPost((Post)user.getPosts().getObject());
+            linkP = linkP.hermanosPost(user.getPosts().linkOb);
+            linkU = null;
+            this.id = user.getId();
+            this.name = user.getName();
+            this.userName = user.getUserName();
+            this.email = user.getEmail();
+            this.phone = user.getPhone();
+            this.webSite = user.getWebSite();
+            this.address = user.getAddress();
+            this.company = user.getCompany();
         }
 
-        public NodoPost[] getNodosP() {
-            return nodosP;
+        /*
+        Getters de atributos
+        */
+
+        public NodoPost getPost(int i) {
+            NodoPost p = this.linkP;
+            int cont = 0;
+            while (p != null && cont < i){
+                p = p.linkP;
+                cont++;
+            }
+            return p;
         }
 
+        public NodoUser getLinkU() {
+            return linkU;
+        }
+
+        public NodoPost getLinkP() {
+            return linkP;
+        }
+
+       
         public int getId() {
             return id;
         }
@@ -110,12 +180,52 @@ public abstract class Arbol {
             return company;
         }
         
-        public NodoPost getNodoP(int i) {
-            return nodosP[i];
+        /**
+         * Método mediante el cual se añade un NodoUser cierta lista que contiene elementos User
+         * @param user Objeto User que se interpretará para traducirse en un NodoUser y ser agregado a la lista
+         * @return Primer elemento de la lista de NodoUser, hijos de la raíz
+         */
+        public NodoUser addNodoU(User user) {
+            if (linkU == null) {
+                linkU = new NodoUser(user);
+            }else{
+                NodoUser p = linkU;
+                while (p.linkU != null){
+                    p = p.linkU;
+                }
+                p.linkU = new NodoUser(user);
+            }
+            return this;
         }
         
-        public void setNodoP(int i, NodoPost nodoP) {
-            this.nodosP[i] = nodoP;
+        /**
+         * Método mediante el cual se añade un NodoPost cierta lista que contiene elementos Post
+         * @param post Objeto Post que se interpretará para traducirse en un NodoPost que se agregará a la lista
+         * @return Primer elemento de una lista enlazada de elementos Post
+         */
+        public void setNodoP(Post post) {
+            if (linkP == null) {
+                linkP = new NodoPost(post);
+            }else{
+                NodoPost p = linkP;
+                while (p.linkP != null){
+                    p = p.linkP;
+                }
+                p.linkP = new NodoPost(post);
+            }
+        }
+        
+        /**
+         * Método que permite conocer el número de hijos de un NodoUser
+         * @param NP Primer elemento de la lista enlazada correspondiente a los hijos del NodoUser
+         * @return Entero correspondiente al número de hijos de un NodoUser
+         */
+        public int numNodos(NodoPost NP){
+            if (NP.linkP == null){
+                return 0;
+            }else{
+                return 1 + numNodos(NP.linkP);
+            }
         }
 
         public StringBuffer show() {
@@ -128,87 +238,259 @@ public abstract class Arbol {
         }
     }
 
+    /**
+     * Clase que representa la estructura de un NodoPost
+     */
     public class NodoPost {
-
-        int id, userID;
+        
+        /*
+        Variables que representan los atributos de un objeto Post, para poderlo traducir en un objeto NodoPost
+        */
+        int id, userID;   
         String tittle, body;
-        NodoComment[] nodosC;
+        NodoPost linkP;   //Apuntador correspondiente al siguiente NodoPost de la lista enlazada
+        NodoComment linkC;   //Apuntador correspondiente al primer hijo NodoCommet del NodoPost
 
+        /**
+         * Constructor vacío de la clase NodoPost
+         */
         public NodoPost() {
         }
 
-        public NodoPost(int commentsLenght, int id, int userID, String tittle, String body) {
-            nodosC = new NodoComment[commentsLenght];
-            this.id = id;
-            this.userID = userID;
-            this.tittle = tittle;
-            this.body = body;
+        /** 
+         * Constructor no vacío de la clase NodoPost, usado para agregar nuevos elementos a la lista Enlazada
+         * @param post Objeto Post que se interpretará para traducirse en un NodoPost
+         */
+        public NodoPost(Post post) {
+            linkC = new NodoComment((Comment)post.getComments().getObject());
+            linkC = linkC.hermanosComment(post.getComments().linkOb);
+            linkP = null;
+            this.id = post.getId();
+            this.userID = post.getUserID();
+            this.tittle = post.getTittle();
+            this.body = post.getBody();
         }
 
+        /*
+        Getters de atributos
+        */
         public int getId() {
             return id;
         }
 
+        public NodoComment getLinkC() {
+            return linkC;
+        }
+
+        public NodoPost getLinkP() {
+            return linkP;
+        }
+
+        
         public int getUserID() {
             return userID;
         }
 
-        public NodoComment[] getNodosC() {
-            return nodosC;
+        public String getTittle() {
+            return tittle;
+        }
+
+        public String getBody() {
+            return body;
         }
         
-        public NodoComment getNodoC(int i) {
-            return nodosC[i];
+        /**
+         * Método mediante el cual se añade un NodoPost cierta lista que contiene elementos Post
+         * @param post Objeto Post que se interpretará para traducirse en un NodoPost que se agregará a la lista
+         * @return Primer elemento de una lista enlazada de elementos Post
+         */
+        public NodoPost addNodoP(Post post) {
+            if (linkP == null) {
+                linkP = new NodoPost(post);
+            }else{
+                NodoPost p = linkP;
+                while (p.linkP != null){
+                    p = p.linkP;
+                }
+                p.linkP = new NodoPost(post);
+            }
+            return this;
         }
         
-        public void setNodoC(int i, NodoComment nodoC) {
-            this.nodosC[i] = nodoC;
+        /**
+         * Método mediante el cual se añade un NodoComment cierta lista que contiene elementos Comment
+         * @param comment Objeto Comment que se interpretará para traducirse en un NodoComment que se agregará a al lista
+         * @return Primer elemento de una lista enlazada de elementos Comment
+         */
+        public NodoPost setNodoC(Comment comment) {
+            if (linkC == null) {
+                linkC = new NodoComment(comment);
+            }else{
+                NodoComment p = linkC;
+                while (p.linkC != null){
+                    p = p.linkC;
+                }
+                p.linkC = new NodoComment(comment);
+            }
+            return this;
+        }
+        
+        /**
+         * Método que permite conocer le número de hijos de un NodoPost
+         * @param NC Primer elemento de la lista enlazada correspondiente a los hijos de un NodoPost
+         * @return Entero correspondiente al número de hijos de un NodoPost
+         */
+        public int numNodos(NodoComment NC){
+            if (NC == null){
+                return 0;
+            }else{
+                return 1 + numNodos(NC.linkC);
+            }
+        }
+        
+        public NodoPost hermanosPost(Lista<Post> posts) {
+            Lista<Post> p = posts;
+            while (p.linkOb != null){
+                this.addNodoP((Post)p.getObject());
+                p = p.linkOb;
+            }
+            this.addNodoP((Post)p.getObject());
+            return this;
+        }
+
+        public NodoComment getComment(int i) {
+            NodoComment c = this.linkC;
+            int cont = 0;
+            while (c != null && cont < i){
+                c = c.linkC;
+                cont++;
+            }
+            return c;
         }
         
         public StringBuffer showPost(ArbolNA As){
             StringBuffer sb = new StringBuffer("");
-            sb.append("Posted by:\t"+As.BuscarUsuario(userID).userName+"\n");
+            //sb.append("Posted by:\t"+As.BuscarUsuario(userID).userName+"\n");
             sb.append("Post's Tittle:\t"+tittle+"\n");
             sb.append(body+"\n");
             return sb;
         }
 
-        public StringBuffer showComments(ArbolNA As, NodoComment[] NC) {
+        public StringBuffer showComments(ArbolNA As, NodoComment NC) {
             StringBuffer sb = new StringBuffer("");
-            for (int i = 0; i < NC.length; i++) {
-                sb.append("|Email:    "+NC[i].email+"\n");
-                sb.append("|Comment Name:    "+NC[i].name+"\n");
-                sb.append("|"+NC[i].body+"\n\n");
+            NodoComment c = NC;
+            while (c != null) {
+                sb.append("|Email:    "+c.email+"\n");
+                sb.append("|Comment Name:    "+c.name+"\n");
+                sb.append("|"+c.body+"\n\n");
+                c = c.linkC;
             }
                 
             return sb;
         }
+
+        
     }
 
+    /**
+     * Clase que representa la estructura de un NodoComment
+     */
     public class NodoComment {
 
+        /*
+        Variables que representan los atributos de un objeto Comment, para poderlo traducir en un objeto NodoComment
+        */
         int id, postID;
         String name, email, body;
+        NodoComment linkC;   //Apuntador correspondiente al siguiente elemento de la lista de elementos NodoComment
 
+        
+        /**
+         * Constructor vacío de la clase NodoComment
+         */
         public NodoComment() {
         }
 
-        
-        public NodoComment(int id, int postID, String name, String email, String body) {
-            this.id = id;
-            this.postID = postID;
-            this.name = name;
-            this.email = email;
-            this.body = body;
+        /**
+         * Constructor no vacío de la clase NodoComment, usado para agregar nuevos elementos a la lista
+         * @param comment Objeto Comment que se interpretará para ser traducido en un NodoComment
+         */
+        public NodoComment(Comment comment) {
+            linkC = null;
+            this.id = comment.getId();
+            this.postID = comment.getPostID();
+            this.name = comment.getName();
+            this.email = comment.getEmail();
+            this.body = comment.getBody();
         }
+
+        /*
+        Getters de atributos
+        */
+        public int getId() {
+            return id;
+        }
+
+        public int getPostID() {
+            return postID;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public String getEmail() {
+            return email;
+        }
+
+        public String getBody() {
+            return body;
+        }
+        
+        /**
+         * Método mediante el cual se añade un NodoComment a cierta lista enlazada que contiene elementos Comment
+         * @param comment Objeto Comment que se interpretará para traducirse en un NodoComment y ser agregado a la lista
+         * @return Primer elemento de una lista enlazada de elementos Comment
+         */
+        public NodoComment addNodoC(Comment comment) {
+            if (linkC == null) {
+                linkC = new NodoComment(comment);
+            }else{
+                NodoComment p = linkC;
+                while (p.linkC != null){
+                    p = p.linkC;
+                }
+                p.linkC = new NodoComment(comment);
+            }
+            return this;
+        }
+
+        private NodoComment hermanosComment(Lista<Comment> comments) {
+            Lista<Comment> p = comments;
+            while (p.linkOb != null){
+                this.addNodoC((Comment)p.getObject());
+                p = p.linkOb;
+            }
+            this.addNodoC((Comment)p.getObject());
+            return this;
+        }
+        
     }
 
+    /**
+     * Getter que permite acceder a la lista enlazada de elementos User relacionada al Arbol
+     * @return Primer elemento de una lista enlazada de elementos User
+     */
+    public Lista<User> getUsers() {
+        return users;
+    }
+
+    /**
+     * Getter que permite acceder a la raíz de un Arbol
+     * @return NodoRaiz de un Arbol
+     */
     public NodoRaiz getNR() {
         return NR;
-    }
-
-    public void setUsers(ArrayList<User> users) {
-        this.users = users;
     }
 
 }

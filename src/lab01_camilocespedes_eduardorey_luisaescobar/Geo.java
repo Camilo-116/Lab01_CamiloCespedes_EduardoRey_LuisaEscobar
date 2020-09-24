@@ -6,12 +6,20 @@
 package lab01_camilocespedes_eduardorey_luisaescobar;
 
 /**
- *
- * @author Camilo Cespedes
+ * Clase que representa las coordenadas peretenecientes a una dirección
+ * @author Camilo Cespedes, Luisa Escobar, Eduardo Rey
  */
 public class Geo {
+    /*
+    Atributos
+    */
     private float latitud, longitud;
 
+    /**
+     * Constructor no vacío de la clase Geo
+     * @param latitud latitud de la coordenada
+     * @param longitud longitud de la coordenada
+     */
     public Geo(float latitud, float longitud) {
         this.latitud = latitud;
         this.longitud = longitud;

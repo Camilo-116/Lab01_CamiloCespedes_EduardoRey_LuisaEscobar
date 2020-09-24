@@ -5,17 +5,11 @@
  */
 package lab01_camilocespedes_eduardorey_luisaescobar;
 
-import Arbol.Arbol.NodoComment;
-import Arbol.Arbol.NodoPost;
-import Arbol.Arbol.NodoRaiz;
+import Arbol.Arbol.*;
 import Arbol.ArbolNA;
 import Inter.InterJSON;
 import java.awt.CardLayout;
-import Arbol.Arbol.NodoUser;
-import java.util.ArrayList;
-import javax.swing.DefaultListModel;
-import javax.swing.JOptionPane;
-import javax.swing.JTextArea;
+import javax.swing.*;
 
 /**
  *
@@ -32,23 +26,23 @@ public class Ventana extends javax.swing.JFrame {
         setSize(1285, 750);
         setLocationRelativeTo(null);
         setResizable(false);
-        DefaultListModel model = new DefaultListModel();
-        //listaInfoUser.setModel(model);
         master = new InterJSON();
         cl = (CardLayout) panelDeVisualizacion.getLayout();
-        As = new ArbolNA(master.Transformar());  //Se crea el arreglo de usuarios con todos sus atributos, incluyendo posts y comentarios, y se envia este al Árbol que se creará
+        As = new ArbolNA(master.Transformar());//Se crea el arreglo de usuarios con todos sus atributos, incluyendo posts y comentarios, y se envia este al Árbol que se creará
         showAreaPosts(posts, As.getNR());
-        //users.get(4).show();
-        //System.out.println(users.get(6).getUserName());
     }
     public void showAreaPosts(JTextArea TXA, NodoRaiz NR){
-        for (int i = 0; i < NR.getNodosU().length; i++) {
-            for (int j = 0; j < NR.getNodoU(i).getNodosP().length; j++) {
-                TXA.append("UserID:    "+NR.getNodoU(i).getNodoP(j).getUserID()+"\n");
-                TXA.append("ID:    "+NR.getNodoU(i).getNodoP(j).getId()+"\n");
-                showArea(TXA, NR.getNodoU(i).getNodoP(j));
+        NodoUser u = NR.getLinkU();
+        while (u != null) {
+            NodoPost p = u.getLinkP();
+            while (p != null) {
+                TXA.append("UserID:    "+p.getUserID()+"\n");
+                TXA.append("ID:    "+p.getId()+"\n");
+                showArea(TXA, p);
                 TXA.append("\n");
+                p = p.getLinkP();
             }
+            u = u.getLinkU();
         }
     }
     public void showArea(JTextArea TXA, NodoUser NU) {
@@ -61,7 +55,7 @@ public class Ventana extends javax.swing.JFrame {
         TXA.append("" + sb);
     }
 
-    public void showArea(JTextArea TXA, NodoPost NP, NodoComment[] NC) {
+    public void showArea(JTextArea TXA, NodoPost NP, NodoComment NC) {
         StringBuffer sb = NP.showComments(As, NC);
         TXA.append("" + sb);
     }
@@ -124,10 +118,10 @@ public class Ventana extends javax.swing.JFrame {
 
         panelDeVisualizacion.setLayout(new java.awt.CardLayout());
 
+        posts.setEditable(false);
         posts.setColumns(20);
         posts.setFont(new java.awt.Font("Monospaced", 0, 16)); // NOI18N
         posts.setRows(5);
-        posts.setBorder(null);
         jScrollPane3.setViewportView(posts);
 
         javax.swing.GroupLayout PostsLayout = new javax.swing.GroupLayout(Posts);
@@ -155,6 +149,7 @@ public class Ventana extends javax.swing.JFrame {
         splitPostIndividual.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
         splitPostIndividual.setPreferredSize(new java.awt.Dimension(719, 625));
 
+        post.setEditable(false);
         post.setColumns(20);
         post.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
         post.setRows(5);
@@ -162,6 +157,7 @@ public class Ventana extends javax.swing.JFrame {
 
         splitPostIndividual.setTopComponent(scrollPost);
 
+        comments.setEditable(false);
         comments.setColumns(20);
         comments.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
         comments.setRows(5);
@@ -236,6 +232,7 @@ public class Ventana extends javax.swing.JFrame {
         InfoAdicional.setText("Información Adicional:");
         UsuarioIndividual.add(InfoAdicional, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 270, 240, 30));
 
+        infoUsuario.setEditable(false);
         infoUsuario.setColumns(20);
         infoUsuario.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
         infoUsuario.setRows(5);
@@ -318,7 +315,7 @@ public class Ventana extends javax.swing.JFrame {
             int IdPost = Integer.parseInt(idPost.getText());
             if (As.BuscarPost(IdPost) != null) {
                 showArea(post, As.BuscarPost(IdPost));
-                showArea(comments, As.BuscarPost(IdPost), As.BuscarPost(IdPost).getNodosC());
+                showArea(comments, As.BuscarPost(IdPost), As.BuscarPost(IdPost).getLinkC());
                 cl.show(panelDeVisualizacion, "Pi");
             }else{
                 JOptionPane.showMessageDialog(null, "No se encontró el post", "ERROR", 0);
@@ -374,9 +371,6 @@ public class Ventana extends javax.swing.JFrame {
         cl.show(panelDeVisualizacion, "Ps");
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Background;
