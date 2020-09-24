@@ -36,10 +36,10 @@ public class Ventana extends javax.swing.JFrame {
         while (u != null) {
             NodoPost p = u.getLinkP();
             while (p != null) {
-                TXA.append("UserID:    "+p.getUserID()+"\n");
+                TXA.append("Posted by:   "+As.BuscarUsuario(p.getUserID()).getUserName()+"  |  UserID:  "+p.getUserID()+"\n");
                 TXA.append("ID:    "+p.getId()+"\n");
                 showArea(TXA, p);
-                TXA.append("\n");
+                TXA.append("\t____________________________________________________________"+"\n\n");
                 p = p.getLinkP();
             }
             u = u.getLinkU();
@@ -93,6 +93,7 @@ public class Ventana extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
         panelDeBusqueda1 = new javax.swing.JPanel();
         BuscarUsuario = new javax.swing.JLabel();
         BuscarID = new javax.swing.JLabel();
@@ -109,7 +110,6 @@ public class Ventana extends javax.swing.JFrame {
         buscarPost = new javax.swing.JButton();
         separador2 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
         Background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -123,9 +123,13 @@ public class Ventana extends javax.swing.JFrame {
         Posts.setBackground(new java.awt.Color(245, 244, 236));
 
         posts.setEditable(false);
+        posts.setBackground(new java.awt.Color(204, 204, 255));
         posts.setColumns(20);
-        posts.setFont(new java.awt.Font("Monospaced", 0, 16)); // NOI18N
+        posts.setFont(new java.awt.Font("Century Schoolbook", 0, 16)); // NOI18N
+        posts.setLineWrap(true);
         posts.setRows(5);
+        posts.setToolTipText("");
+        posts.setWrapStyleWord(true);
         jScrollPane3.setViewportView(posts);
 
         javax.swing.GroupLayout PostsLayout = new javax.swing.GroupLayout(Posts);
@@ -141,7 +145,7 @@ public class Ventana extends javax.swing.JFrame {
             PostsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PostsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 614, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 614, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -151,20 +155,28 @@ public class Ventana extends javax.swing.JFrame {
         PostIndividual.setMaximumSize(new java.awt.Dimension(734, 640));
         PostIndividual.setMinimumSize(new java.awt.Dimension(734, 640));
 
+        splitPostIndividual.setBackground(new java.awt.Color(0, 51, 153));
         splitPostIndividual.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
+        splitPostIndividual.setAutoscrolls(true);
+        splitPostIndividual.setLastDividerLocation(-1);
         splitPostIndividual.setPreferredSize(new java.awt.Dimension(719, 625));
 
         post.setEditable(false);
+        post.setBackground(new java.awt.Color(161, 199, 255));
         post.setColumns(20);
-        post.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
+        post.setFont(new java.awt.Font("Century Schoolbook", 0, 18)); // NOI18N
+        post.setLineWrap(true);
         post.setRows(5);
+        post.setPreferredSize(new java.awt.Dimension(324, 164));
         scrollPost.setViewportView(post);
 
         splitPostIndividual.setTopComponent(scrollPost);
 
         comments.setEditable(false);
+        comments.setBackground(new java.awt.Color(111, 169, 242));
         comments.setColumns(20);
-        comments.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
+        comments.setFont(new java.awt.Font("Century Schoolbook", 0, 18)); // NOI18N
+        comments.setLineWrap(true);
         comments.setRows(5);
         jScrollPane2.setViewportView(comments);
 
@@ -197,7 +209,7 @@ public class Ventana extends javax.swing.JFrame {
                 .addComponent(splitPostIndividual, javax.swing.GroupLayout.DEFAULT_SIZE, 756, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(PostIndividualLayout.createSequentialGroup()
-                .addGap(332, 332, 332)
+                .addGap(330, 330, 330)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -206,9 +218,9 @@ public class Ventana extends javax.swing.JFrame {
             .addGroup(PostIndividualLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(splitPostIndividual, javax.swing.GroupLayout.PREFERRED_SIZE, 563, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         panelDeVisualizacion.add(PostIndividual, "Pi");
@@ -248,12 +260,13 @@ public class Ventana extends javax.swing.JFrame {
         UsuarioIndividual.add(InfoAdicional, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 270, 240, 50));
 
         infoUsuario.setEditable(false);
+        infoUsuario.setBackground(new java.awt.Color(225, 210, 237));
         infoUsuario.setColumns(20);
-        infoUsuario.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
+        infoUsuario.setFont(new java.awt.Font("Century Schoolbook", 0, 18)); // NOI18N
         infoUsuario.setRows(5);
         jScrollPane1.setViewportView(infoUsuario);
 
-        UsuarioIndividual.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 670, 220));
+        UsuarioIndividual.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, 670, 220));
 
         jButton2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/volver.png"))); // NOI18N
@@ -265,7 +278,7 @@ public class Ventana extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        UsuarioIndividual.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 540, 100, 40));
+        UsuarioIndividual.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 530, 100, 40));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/cuadro.png"))); // NOI18N
         UsuarioIndividual.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 0, 390, 90));
@@ -278,6 +291,17 @@ public class Ventana extends javax.swing.JFrame {
         panelDeVisualizacion.add(UsuarioIndividual, "Ui");
 
         getContentPane().add(panelDeVisualizacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 40, 780, 640));
+
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/salir.png"))); // NOI18N
+        jButton3.setBorderPainted(false);
+        jButton3.setContentAreaFilled(false);
+        jButton3.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/salircon.png"))); // NOI18N
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 610, 100, -1));
 
         panelDeBusqueda1.setBackground(new java.awt.Color(245, 244, 236));
         panelDeBusqueda1.setForeground(new java.awt.Color(245, 244, 236));
@@ -348,17 +372,6 @@ public class Ventana extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/logo.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, -1, -1));
-
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/salir.png"))); // NOI18N
-        jButton3.setBorderPainted(false);
-        jButton3.setContentAreaFilled(false);
-        jButton3.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/salircon.png"))); // NOI18N
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 630, 100, -1));
 
         Background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/bg.png"))); // NOI18N
         getContentPane().add(Background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));

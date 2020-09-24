@@ -371,7 +371,7 @@ public abstract class Arbol {
         public StringBuffer showPost(ArbolNA As){
             StringBuffer sb = new StringBuffer("");
             //sb.append("Posted by:\t"+As.BuscarUsuario(userID).userName+"\n");
-            sb.append("Post's Tittle:\t"+tittle+"\n");
+            sb.append("Post's Tittle:\t"+tittle+"\n\n");
             sb.append(body+"\n");
             return sb;
         }
@@ -382,7 +382,8 @@ public abstract class Arbol {
             while (c != null) {
                 sb.append("|Email:    "+c.email+"\n");
                 sb.append("|Comment Name:    "+c.name+"\n");
-                sb.append("|"+c.body+"\n\n");
+                sb.append("|"+c.body+"\n");
+                sb.append("\t___________________________________________________"+"\n\n");
                 c = c.linkC;
             }
                 
