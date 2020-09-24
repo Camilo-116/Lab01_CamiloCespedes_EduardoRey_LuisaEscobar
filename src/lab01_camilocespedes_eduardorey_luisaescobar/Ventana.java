@@ -84,8 +84,6 @@ public class Ventana extends javax.swing.JFrame {
         IconoUsuario = new javax.swing.JLabel();
         nombreDeUsuario = new javax.swing.JLabel();
         titleID = new javax.swing.JLabel();
-        titleNombre = new javax.swing.JLabel();
-        titleEmail = new javax.swing.JLabel();
         email = new javax.swing.JLabel();
         nombre = new javax.swing.JLabel();
         ID = new javax.swing.JLabel();
@@ -93,6 +91,8 @@ public class Ventana extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         infoUsuario = new javax.swing.JTextArea();
         jButton2 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         panelDeBusqueda1 = new javax.swing.JPanel();
         BuscarUsuario = new javax.swing.JLabel();
         BuscarID = new javax.swing.JLabel();
@@ -108,6 +108,8 @@ public class Ventana extends javax.swing.JFrame {
         idPost = new javax.swing.JTextField();
         buscarPost = new javax.swing.JButton();
         separador2 = new javax.swing.JSeparator();
+        jLabel1 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
         Background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -117,6 +119,8 @@ public class Ventana extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         panelDeVisualizacion.setLayout(new java.awt.CardLayout());
+
+        Posts.setBackground(new java.awt.Color(245, 244, 236));
 
         posts.setEditable(false);
         posts.setColumns(20);
@@ -143,6 +147,7 @@ public class Ventana extends javax.swing.JFrame {
 
         panelDeVisualizacion.add(Posts, "Ps");
 
+        PostIndividual.setBackground(new java.awt.Color(245, 244, 236));
         PostIndividual.setMaximumSize(new java.awt.Dimension(734, 640));
         PostIndividual.setMinimumSize(new java.awt.Dimension(734, 640));
 
@@ -165,8 +170,18 @@ public class Ventana extends javax.swing.JFrame {
 
         splitPostIndividual.setRightComponent(jScrollPane2);
 
+        jButton1.setBackground(new java.awt.Color(245, 244, 236));
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jButton1.setText("Volver");
+        jButton1.setForeground(new java.awt.Color(245, 244, 236));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/volver.png"))); // NOI18N
+        jButton1.setBorderPainted(false);
+        jButton1.setContentAreaFilled(false);
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButton1.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        jButton1.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/volver.png"))); // NOI18N
+        jButton1.setDisabledSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/volver2.png"))); // NOI18N
+        jButton1.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButton1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/volver2.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -182,8 +197,8 @@ public class Ventana extends javax.swing.JFrame {
                 .addComponent(splitPostIndividual, javax.swing.GroupLayout.DEFAULT_SIZE, 756, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(PostIndividualLayout.createSequentialGroup()
-                .addGap(257, 257, 257)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(332, 332, 332)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         PostIndividualLayout.setVerticalGroup(
@@ -198,39 +213,39 @@ public class Ventana extends javax.swing.JFrame {
 
         panelDeVisualizacion.add(PostIndividual, "Pi");
 
+        UsuarioIndividual.setBackground(new java.awt.Color(245, 244, 236));
         UsuarioIndividual.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         IconoUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/UserIcon.png"))); // NOI18N
-        UsuarioIndividual.add(IconoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, -1, -1));
+        UsuarioIndividual.add(IconoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, -1, -1));
 
-        nombreDeUsuario.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        nombreDeUsuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        UsuarioIndividual.add(nombreDeUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(251, 13, 504, 72));
+        nombreDeUsuario.setFont(new java.awt.Font("Calibri Light", 0, 36)); // NOI18N
+        nombreDeUsuario.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        nombreDeUsuario.setText("xxxxxxxxxxxx");
+        UsuarioIndividual.add(nombreDeUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 10, 504, 72));
 
         titleID.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        titleID.setText("ID de Usuario:");
-        UsuarioIndividual.add(titleID, new org.netbeans.lib.awtextra.AbsoluteConstraints(264, 98, 120, 40));
+        titleID.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/labelusuario.png"))); // NOI18N
+        UsuarioIndividual.add(titleID, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, 120, 190));
 
-        titleNombre.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        titleNombre.setText("Nombre:");
-        UsuarioIndividual.add(titleNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(264, 153, 80, 30));
+        email.setFont(new java.awt.Font("Calibri Light", 0, 24)); // NOI18N
+        email.setForeground(new java.awt.Color(102, 102, 102));
+        email.setText("xxxx");
+        UsuarioIndividual.add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 210, 400, 20));
 
-        titleEmail.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        titleEmail.setText("E-mail:");
-        UsuarioIndividual.add(titleEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 210, 70, 20));
+        nombre.setFont(new java.awt.Font("Calibri Light", 0, 24)); // NOI18N
+        nombre.setForeground(new java.awt.Color(102, 102, 102));
+        nombre.setText("xxxx");
+        UsuarioIndividual.add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 160, 350, 30));
 
-        email.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        UsuarioIndividual.add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 200, 400, 40));
+        ID.setFont(new java.awt.Font("Calibri Light", 0, 35)); // NOI18N
+        ID.setForeground(new java.awt.Color(102, 102, 102));
+        ID.setText("xxx");
+        UsuarioIndividual.add(ID, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 100, 90, 30));
 
-        nombre.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        UsuarioIndividual.add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 150, 350, 40));
-
-        ID.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        UsuarioIndividual.add(ID, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 100, 90, 40));
-
-        InfoAdicional.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
-        InfoAdicional.setText("Información Adicional:");
-        UsuarioIndividual.add(InfoAdicional, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 270, 240, 30));
+        InfoAdicional.setFont(new java.awt.Font("Dubai", 0, 22)); // NOI18N
+        InfoAdicional.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/info.png"))); // NOI18N
+        UsuarioIndividual.add(InfoAdicional, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 270, 240, 50));
 
         infoUsuario.setEditable(false);
         infoUsuario.setColumns(20);
@@ -241,68 +256,109 @@ public class Ventana extends javax.swing.JFrame {
         UsuarioIndividual.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 670, 220));
 
         jButton2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jButton2.setText("Volver");
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/volver.png"))); // NOI18N
+        jButton2.setBorderPainted(false);
+        jButton2.setContentAreaFilled(false);
+        jButton2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/volver2.png"))); // NOI18N
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        UsuarioIndividual.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 540, 240, 40));
+        UsuarioIndividual.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 540, 100, 40));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/cuadro.png"))); // NOI18N
+        UsuarioIndividual.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 0, 390, 90));
+
+        jLabel3.setFont(new java.awt.Font("Calibri", 0, 13)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel3.setText("Nombre de Usuario |");
+        UsuarioIndividual.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 90, -1, -1));
 
         panelDeVisualizacion.add(UsuarioIndividual, "Ui");
 
         getContentPane().add(panelDeVisualizacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 40, 780, 640));
 
+        panelDeBusqueda1.setBackground(new java.awt.Color(245, 244, 236));
+        panelDeBusqueda1.setForeground(new java.awt.Color(245, 244, 236));
         panelDeBusqueda1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        BuscarUsuario.setBackground(new java.awt.Color(245, 244, 236));
         BuscarUsuario.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        BuscarUsuario.setText("Buscar Usuario:");
-        panelDeBusqueda1.add(BuscarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 346, 30));
+        BuscarUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/buscus.png"))); // NOI18N
+        panelDeBusqueda1.add(BuscarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 346, 60));
 
         BuscarID.setText("ID de Usuario:");
         panelDeBusqueda1.add(BuscarID, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 53, -1, -1));
 
         buscarUserName.setText("Nombre de Usuario:");
-        panelDeBusqueda1.add(buscarUserName, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 105, -1, -1));
-        panelDeBusqueda1.add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(166, 50, 129, -1));
-        panelDeBusqueda1.add(userName, new org.netbeans.lib.awtextra.AbsoluteConstraints(166, 102, 180, -1));
+        panelDeBusqueda1.add(buscarUserName, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
+        panelDeBusqueda1.add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 129, -1));
+        panelDeBusqueda1.add(userName, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, 180, -1));
 
         jLabel5.setText("ó");
-        panelDeBusqueda1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(99, 79, -1, -1));
+        panelDeBusqueda1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, -1, -1));
 
         buscarUser.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        buscarUser.setText("Buscar Usuario");
+        buscarUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/usuariosin.png"))); // NOI18N
+        buscarUser.setBorderPainted(false);
+        buscarUser.setContentAreaFilled(false);
+        buscarUser.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/usuariocon.png"))); // NOI18N
         buscarUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buscarUserActionPerformed(evt);
             }
         });
-        panelDeBusqueda1.add(buscarUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(113, 137, 159, -1));
-        panelDeBusqueda1.add(separador1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 42, 370, 140));
+        panelDeBusqueda1.add(buscarUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, 190, 40));
 
-        getContentPane().add(panelDeBusqueda1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 370, 180));
+        separador1.setBackground(new java.awt.Color(245, 244, 236));
+        separador1.setForeground(new java.awt.Color(245, 244, 236));
+        panelDeBusqueda1.add(separador1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 370, 150));
 
+        getContentPane().add(panelDeBusqueda1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 250, 370, 180));
+
+        panelDeBusqueda2.setBackground(new java.awt.Color(245, 244, 236));
+        panelDeBusqueda2.setForeground(new java.awt.Color(245, 244, 236));
         panelDeBusqueda2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         BuscarPost.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        BuscarPost.setText("Buscar Publicación:");
-        panelDeBusqueda2.add(BuscarPost, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 346, 30));
+        BuscarPost.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/buspos.png"))); // NOI18N
+        panelDeBusqueda2.add(BuscarPost, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 346, 60));
 
         BuscarIdPost.setText("ID de Publicación:");
-        panelDeBusqueda2.add(BuscarIdPost, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 76, -1, 20));
-        panelDeBusqueda2.add(idPost, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 70, 129, 30));
+        panelDeBusqueda2.add(BuscarIdPost, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, -1, 20));
+        panelDeBusqueda2.add(idPost, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 129, 30));
 
         buscarPost.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        buscarPost.setText("Buscar Publicación");
+        buscarPost.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/pubsin.png"))); // NOI18N
+        buscarPost.setBorderPainted(false);
+        buscarPost.setContentAreaFilled(false);
+        buscarPost.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/pubcon.png"))); // NOI18N
         buscarPost.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buscarPostActionPerformed(evt);
             }
         });
-        panelDeBusqueda2.add(buscarPost, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, 190, -1));
+        panelDeBusqueda2.add(buscarPost, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, 190, 40));
+
+        separador2.setForeground(new java.awt.Color(245, 244, 236));
         panelDeBusqueda2.add(separador2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 42, 370, 140));
 
-        getContentPane().add(panelDeBusqueda2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 420, -1, 180));
+        getContentPane().add(panelDeBusqueda2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 450, -1, 180));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/logo.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, -1, -1));
+
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/salir.png"))); // NOI18N
+        jButton3.setBorderPainted(false);
+        jButton3.setContentAreaFilled(false);
+        jButton3.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/salircon.png"))); // NOI18N
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 630, -1, -1));
 
         Background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/bg.png"))); // NOI18N
         getContentPane().add(Background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -318,9 +374,11 @@ public class Ventana extends javax.swing.JFrame {
                 showArea(comments, As.BuscarPost(IdPost), As.BuscarPost(IdPost).getLinkC());
                 cl.show(panelDeVisualizacion, "Pi");
             }else{
+                cl.show(panelDeVisualizacion, "Ps");
                 JOptionPane.showMessageDialog(null, "No se encontró el post", "ERROR", 0);
             }
         } else {
+            cl.show(panelDeVisualizacion, "Ps");
             JOptionPane.showMessageDialog(null, "Debe llenar el campo de identificación", "ERROR", 0);
         }
         idPost.setText("");
@@ -328,18 +386,20 @@ public class Ventana extends javax.swing.JFrame {
     }//GEN-LAST:event_buscarPostActionPerformed
 
     private void buscarUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarUserActionPerformed
+        infoUsuario.setText("");
         if (!id.getText().isEmpty() || !userName.getText().isEmpty()) {
             if (!id.getText().isEmpty()) {
                 int iD = Integer.parseInt(id.getText());
                 if (As.BuscarUsuario(iD) != null) {
-                    nombreDeUsuario.setText(As.BuscarUsuario(iD).getUserName());
+                    String nm = As.BuscarUsuario(iD).getUserName();
+                    nombreDeUsuario.setText(nm);
                     ID.setText("" + As.BuscarUsuario(iD).getId());
                     nombre.setText(As.BuscarUsuario(iD).getName());
                     email.setText(As.BuscarUsuario(iD).getEmail());
                     showArea(infoUsuario, As.BuscarUsuario(iD));
                     cl.show(panelDeVisualizacion, "Ui");
-
                 } else {
+                    cl.show(panelDeVisualizacion, "Ps");
                     JOptionPane.showMessageDialog(null, "No se encontró el usuario", "ERROR", 0);
                 }
             } else {
@@ -351,12 +411,14 @@ public class Ventana extends javax.swing.JFrame {
                     email.setText(As.BuscarUsuario(UN).getEmail());
                     showArea(infoUsuario, As.BuscarUsuario(UN));
                     cl.show(panelDeVisualizacion, "Ui");
-
                 } else {
+                    cl.show(panelDeVisualizacion, "Ps");
                     JOptionPane.showMessageDialog(null, "No se encontró el usuario", "ERROR", 0);
                 }
+                
             }
         } else {
+            cl.show(panelDeVisualizacion, "Ps");
             JOptionPane.showMessageDialog(null, "Se debe llenar uno de los dos campos", "ERROR", 0);
         }
         id.setText("");
@@ -371,6 +433,13 @@ public class Ventana extends javax.swing.JFrame {
         cl.show(panelDeVisualizacion, "Ps");
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Background;
@@ -394,6 +463,10 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JTextArea infoUsuario;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -409,9 +482,7 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JSeparator separador1;
     private javax.swing.JSeparator separador2;
     private javax.swing.JSplitPane splitPostIndividual;
-    private javax.swing.JLabel titleEmail;
     private javax.swing.JLabel titleID;
-    private javax.swing.JLabel titleNombre;
     private javax.swing.JTextField userName;
     // End of variables declaration//GEN-END:variables
 }
