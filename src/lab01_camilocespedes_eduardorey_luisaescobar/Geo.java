@@ -25,14 +25,26 @@ public class Geo {
         this.longitud = longitud;
     }
 
+    /**
+     * Metodo que permite acceder a la latitud de una coordenada
+     * @return String correspondiente a la latitud de una coordenada
+     */
     public float getLatitud() {
         return latitud;
     }
 
+    /**
+     * Metodo que permite acceder a la longitud de una coordenada
+     * @return String correspondiente a la longitud de una coordenada
+     */
     public float getLongitud() {
         return longitud;
     }
 
+    /**
+     * Metodo que condensa la informacion de una coordenada
+     * @return StringBuffer que contiene la informacion textual de una coordenada condensada y organizada
+     */
     public StringBuffer show() {
         StringBuffer sb = new StringBuffer("Geo: {\n");
         sb.append("\t\t"+this.latitud+"\n");

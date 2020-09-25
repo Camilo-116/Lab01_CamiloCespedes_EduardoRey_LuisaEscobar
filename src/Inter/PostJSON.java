@@ -34,7 +34,7 @@ public class PostJSON implements Extraccion {
     /**
      * Método que extrae los atributos de cada post y los agrupa para crear objetos de tipo Post e irlos agregando a la lista enlazada de posts que se retornará
      * 
-     * @return Primer elemento de una lista enlazada de objetos Post
+     * @return Primer elemento de una lista enlazada que contiene objetos Post
      */
     public Lista<Post> GroupProperties() {
         Lista<Integer> userIDs = ExtraerInts(LeerTexto(ruta), "(?<=\\{\\s{1,10}\"userId\": )[\\d]{1,2}");

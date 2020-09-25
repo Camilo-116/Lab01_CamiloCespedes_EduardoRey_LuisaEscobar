@@ -70,6 +70,11 @@ public abstract class Arbol {
             }
         }
 
+        /**
+         * Metodo que permite acceder a un NodoUser perteneciente a los hijos de la raiz, por medio de su posicion en la lista
+         * @param i Índice de la lista en el cual se encuentra el NodoUser buscado
+         * @return NodoUser objetivo
+         */
         public NodoUser getUser(int i) {
             NodoUser u = this.linkU;
             int cont = 0;
@@ -80,6 +85,10 @@ public abstract class Arbol {
             return u;
         }
 
+        /**
+         * Metodo que permite acceder al primer NodoUser hijo de la raiz
+         * @return NodoUser hijo
+         */
         public NodoUser getLinkU() {
             return linkU;
         }
@@ -125,10 +134,11 @@ public abstract class Arbol {
             this.company = user.getCompany();
         }
 
-        /*
-        Getters de atributos
-        */
-
+        /**
+         * Metodo que permite acceder a un NodoPost de la lista de publicaciones de un usuario, por medio de su posición en la lista
+         * @param i Índice en el que se encuentra la publicación dentro de la lista
+         * @return NodoPost objetivo
+         */
         public NodoPost getPost(int i) {
             NodoPost p = this.linkP;
             int cont = 0;
@@ -139,43 +149,82 @@ public abstract class Arbol {
             return p;
         }
 
+        /**
+         * Metodo que permite acceder al NodoUser hermano de un usuario
+         * @return NodoUser hermano
+         */
         public NodoUser getLinkU() {
             return linkU;
         }
 
+        /**
+         * Metodo que permite acceder a un hijo NodoPost de un usuario
+         * @return NodoPost hijo
+         */
         public NodoPost getLinkP() {
             return linkP;
         }
 
-       
+       /**
+         * Metodo que permite acceder al ID de un usuario
+         * @return Entero correspondiente al ID de un usuario
+         */
         public int getId() {
             return id;
         }
 
+        /**
+         * Metodo que permite acceder al nombre de un usuario
+         * @return String correspondiente a la nombre de un usuario
+         */
         public String getName() {
             return name;
         }
 
+        /**
+         * Metodo que permite acceder al nombre de usuario de un usuario
+         * @return String correspondiente al nombre de usuario de un usuario
+         */
         public String getUserName() {
             return userName;
         }
 
+        /**
+         * Metodo que permite acceder al email de un usuario
+         * @return String correspondiente al email de un usuario
+         */
         public String getEmail() {
             return email;
         }
 
+        /**
+         * Metodo que permite acceder al teléfono de un usuario
+         * @return String correspondiente al teléfono de un usuario
+         */
         public String getPhone() {
             return phone;
         }
 
+        /**
+         * Metodo que permite acceder al WebSite de un usuario
+         * @return String correspondiente al WebSite de un usuario
+         */
         public String getWebSite() {
             return webSite;
         }
 
+        /**
+         * Metodo que permite acceder a la direccion de un usuario
+         * @return Address correspondiente a la direccion de un usuario
+         */
         public Address getAddress() {
             return address;
         }
 
+        /**
+         * Metodo que permite acceder a la compañia de un usuario
+         * @return Company correspondiente a la compañia de un usuario
+         */
         public Company getCompany() {
             return company;
         }
@@ -228,6 +277,10 @@ public abstract class Arbol {
             }
         }
 
+        /**
+         * Metodo que condensa la información de un usuario no general
+         * @return StringBuffer que contiene la información no general de un usuario condensada y ordenada
+         */
         public StringBuffer show() {
             StringBuffer sb = new StringBuffer("");
             sb.append("Phone:\t"+phone+"\n");
@@ -275,30 +328,50 @@ public abstract class Arbol {
             }
         }
 
-        /*
-        Getters de atributos
-        */
+        /**
+         * Metodo que permite acceder al ID de una publicacion
+         * @return Entero correspondiente al ID de una publicación
+         */
         public int getId() {
             return id;
         }
 
+        /**
+         * Metodo que permite acceder a un NodoComment hijo
+         * @return NodoComment hijo
+         */
         public NodoComment getLinkC() {
             return linkC;
         }
 
+        /**
+         * Metodo que permite acceder al hermano NodoPost 
+         * @return NodoPost hermano
+         */
         public NodoPost getLinkP() {
             return linkP;
         }
 
-        
+        /**
+         * Metodo que permite acceder al ID del usuario que realizó la publicación
+         * @return Entero correspondiente al ID del usuario que realizó la publicación
+         */
         public int getUserID() {
             return userID;
         }
 
+        /**
+         * Metodo que permite acceder al título de una publicacion
+         * @return String correspondiente al titulo de una publicación
+         */
         public String getTittle() {
             return tittle;
         }
 
+        /**
+         * Metodo que permite acceder al cuerpo de una publicacion
+         * @return String correspondiente al cuerpo de una publicacion
+         */
         public String getBody() {
             return body;
         }
@@ -322,7 +395,7 @@ public abstract class Arbol {
         }
         
         /**
-         * Método mediante el cual se añade un NodoComment cierta lista que contiene elementos Comment
+         * Método mediante el cual se añade un NodoComment a cierta lista que contiene elementos Comment
          * @param comment Objeto Comment que se interpretará para traducirse en un NodoComment que se agregará a al lista
          * @return Primer elemento de una lista enlazada de elementos Comment
          */
@@ -353,9 +426,9 @@ public abstract class Arbol {
         }
         
         /**
-         * 
-         * @param posts
-         * @return 
+         * Método que añade a un NodoPost, sus hermanos
+         * @param comments Primer elemento de la lista de publicaciones Post que se añadirá
+         * @return NodoComment correspondiente al inicio de la lista de elementos NodoPost
          */
         public NodoPost hermanosPost(Lista<Post> posts) {
             Lista<Post> p = posts;

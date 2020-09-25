@@ -30,7 +30,7 @@ public class UserJSON implements Extraccion {
     /**
      * Método que extrae los atributos de cada usuario y los agrupa para crear objetos de tipo User e irlos agregando a la lista enlazada de usuarios que se retornará
      * 
-     * @return Primer elemento de una lista enlazada de objetos User
+     * @return Primer elemento de una lista enlazada que continene objetos User
      */ 
     public Lista<User> GroupProperties() {
         Lista<Integer> ids = ExtraerInts(LeerTexto(ruta), "(?<=\"id\": )[\\d]{1,2}");

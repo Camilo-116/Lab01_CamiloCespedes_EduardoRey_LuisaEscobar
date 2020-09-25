@@ -33,32 +33,45 @@ public class Comment {
         this.body = body;
     }
 
+    /**
+     * Metodo que permite acceder al ID de un comentario
+     * @return Entero correspondiente al ID de un comentario
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * Metodo que permite acceder al ID de la publicacion a la cual pertenece un comentario
+     * @return Entero correspondiente al ID de la publicacion a la cual pertenece un comentario
+     */
     public int getPostID() {
         return postID;
     }
 
+    /**
+     * Metodo que permite acceder al nombre de un comentario
+     * @return String correspondiente al nombre de un comentario
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Metodo que permite acceder al email de un comentario
+     * @return String correspondiente al email de un comentario
+     */
     public String getEmail() {
         return email;
     }
 
+    /**
+     * Metodo que permite acceder al cuerpo de un comentario
+     * @return String correspondiente al cuerpo de un comentario
+     */
     public String getBody() {
         return body;
     }
 
-    public void show() {
-        System.out.println(this.postID);
-        System.out.println(this.id);
-        System.out.println(this.name);
-        System.out.println(this.email);
-        System.out.println(this.body);
-    }
     
 }

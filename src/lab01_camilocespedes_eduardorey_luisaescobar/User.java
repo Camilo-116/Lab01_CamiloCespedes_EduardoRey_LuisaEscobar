@@ -43,58 +43,84 @@ public class User {
         ptrPosts = new Lista();
     }
 
+    /**
+     * Metodo que permite acceder al ID de un User
+     * @return Entero correspondiente al ID de un User
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * Metodo que permite acceder al nombre de un User
+     * @return String correspondiente al nombre de un User
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Metodo que permite acceder al nombre de usuario de un User
+     * @return String correspondiente al nombre de usuario de un User
+     */
     public String getUserName() {
         return userName;
     }
 
+    /**
+     * Metodo que permite acceder al email de un User
+     * @return String correspondiente al email de un User
+     */
     public String getEmail() {
         return email;
     }
 
+    /**
+     * Metodo que permite acceder al teléfono de un User
+     * @return String correspondiente al teléfono de un User
+     */
     public String getPhone() {
         return phone;
     }
 
+    /**
+     * Metodo que permite acceder al sitio web de un User
+     * @return String correspondiente al sitio web de un User
+     */
     public String getWebSite() {
         return webSite;
     }
 
+    /**
+     * Metodo que permite acceder a la direccion de un User
+     * @return Address correspondiente a la direccion de un User
+     */
     public Address getAddress() {
         return address;
     }
 
+    /**
+     * Metodo que permite acceder a la compañia de un User
+     * @return Company correspondiente a la compañia de un User
+     */
     public Company getCompany() {
         return company;
     }
 
+    /**
+     * Metodo que permite acceder a la lista de publicaciones de un User
+     * @return Primer elemento de una lista de elementos Post
+     */
     public Lista<Post> getPosts() {
         return ptrPosts;
     }
 
+    /**
+     * Metodo que permite añadir una publicacion a la lista de publicaciones de un User
+     * @param post publicacion que se añadirá a la lista
+     */
     public void addPost(Post post) {
         this.ptrPosts.add(post);
-    }
-
-    public void show() {
-        System.out.println(this.id);
-        System.out.println(this.name);
-        System.out.println(this.userName);
-        System.out.println(this.email);
-        System.out.println(this.address.show());
-        System.out.println(this.phone);
-        System.out.println(this.webSite);
-        System.out.println(this.company.show());
-        /*for (Post post : ptrPosts) {
-            post.show();
-        }*/
     }
 
     

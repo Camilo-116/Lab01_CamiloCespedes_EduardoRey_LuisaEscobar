@@ -14,14 +14,14 @@ import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
- *
- * @author Camilo Cespedes
+ * Clase que describe la estructura y funcionamiento de la ventana en la cual se viasualizará el programa
+ * @author Camilo Cespedes, Luisa Escobar, Eduardo Rey
  */
 public class Ventana extends javax.swing.JFrame {
 
-    private InterJSON master;
-    private ArbolNA As;
-    private CardLayout cl;
+    private InterJSON master;   //Objeto que se encargará de interpretar los archivos de texto
+    private ArbolNA As;   //Arbol que se manejará
+    private CardLayout cl;   //Disposición de los componentes para uno de los paneles del contenedor Ventana
 
     public Ventana() {
         initComponents();
@@ -31,6 +31,11 @@ public class Ventana extends javax.swing.JFrame {
         cl = (CardLayout) panelDeVisualizacion.getLayout();
     }
 
+    /**
+     * Metodo que permite mostrar la información de todas las publicaciones almacenadas en el árbol
+     * @param TXA Area de texto en la cual se dispondrá la información
+     * @param NR Raiz del Arbol que se está manejando
+     */
     public void showAreaPosts(JTextArea TXA, NodoRaiz NR) {
         if(NR.getLinkU().getName() != null){
             TXA.setText("");
@@ -53,16 +58,32 @@ public class Ventana extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Metodo que permite mostrar la informacion no general de un usuario específico
+     * @param TXA Area de texto en la cual se dispondrá la información
+     * @param NU Nodo que contiene la informacion del usuario que se busca visualizar
+     */
     public void showArea(JTextArea TXA, NodoUser NU) {
         StringBuffer sb = NU.show();
         TXA.append("" + sb);
     }
 
+    /**
+     * Metodo que permite mostrar la informacion una publicación específica
+     * @param TXA Area de texto en la cual se dispondrá la información
+     * @param NP Nodo que contiene la información de la publicación que se busca visualizar
+     */
     public void showArea(JTextArea TXA, NodoPost NP) {
         StringBuffer sb = NP.showPost(As);
         TXA.append("" + sb);
     }
 
+    /**
+     * Metodo que permite mostrar la informacion una serie de comentarios pertenecientes a una publicación específica 
+     * @param TXA Area de texto en la cual se dispondrá la información
+     * @param NP Nodo que contiene la información de una publicación
+     * @param NC Nodo que contiene la informacion de un comentario que se busca visualizar, y que además tiene un apuntador hacia el siguiente comentario
+     */
     public void showArea(JTextArea TXA, NodoPost NP, NodoComment NC) {
         TXA.setText("");
         if (NC.getName() != null) {

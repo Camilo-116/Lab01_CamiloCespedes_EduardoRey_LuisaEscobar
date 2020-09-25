@@ -92,45 +92,27 @@ public class InterJSON {
         return usersT;
     }
 
+    /**
+     * Metodo que permite acceder al UserJSON de un InterJSON
+     * @return UserJSON correspondiente al InterJSON
+     */
     public UserJSON getUserJ() {
         return userJ;
     }
 
+    /**
+     * Metodo que permite acceder al PostJSON de un InterJSON
+     * @return PostJSON correspondiente al InterJSON
+     */
     public PostJSON getPostJ() {
         return postJ;
     }
 
+    /**
+     * Metodo que permite acceder al CommentJSON de un InterJSON
+     * @return CommentJSON correspondiente al InterJSON
+     */
     public CommentJSON getCommentJ() {
         return commentJ;
-    }
-
-    public void printComments() {
-        Lista<Comment> c = commentJ.GroupProperties();
-        Lista<Comment> p = c;
-        while (p.linkOb != null) {
-            p.getObject().show();
-            p = p.linkOb;
-        }
-        p.getObject().show();
-    }
-
-    public void printUsers() {
-        Lista<User> u = userJ.GroupProperties();
-        Lista<User> p = u;
-        while (p.linkOb != null) {
-            p.getObject().show();
-            p = p.linkOb;
-        }
-        p.getObject().show();
-    }
-
-    public void printPosts() {
-        Lista<Post> po = postJ.GroupProperties();
-        Lista<Post> p = po;
-        while (p.linkOb != null) {
-            p.getObject().show();
-            p = p.linkOb;
-        }
-        p.getObject().show();
     }
 }

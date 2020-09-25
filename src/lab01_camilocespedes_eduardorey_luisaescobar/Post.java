@@ -33,45 +33,52 @@ public class Post {
         ptrComments = new Lista();
     }
 
+    /**
+     * Metodo que permite acceder al ID de un Post
+     * @return Entero correspondiente al ID de un Post
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * Metodo que permite acceder al ID del usuario que publicó el Post
+     * @return Entero correspondiente al ID del usuario que publicó el Post
+     */
     public int getUserID() {
         return userID;
     }
 
+    /**
+     * Metodo que permite acceder al titulo de un Post
+     * @return String correspondiente al titulo de un Post
+     */
     public String getTittle() {
         return tittle;
     }
 
+    /**
+     * Metodo que permite acceder al cuerpo de un Post
+     * @return String correspondiente al cuerpo de un Post
+     */
     public String getBody() {
         return body;
     }
 
+    /**
+     * Metodo que permite acceder al primer elemento de la lista de comentarios de un Post
+     * @return Lista correspondiente al primer elemento de la lista de comentarios de un Post
+     */
     public Lista<Comment> getComments() {
         return ptrComments;
     }
-    
-    public Lista<Comment> get(int i) {
-        Lista<Comment> c = ptrComments;
-        int cont = 0;
-        while( cont<i && c != null){
-            c = c.linkOb;
-            cont++;
-        }
-        return c;
-    }
 
+    /**
+     * Metodo que agrega un Comment a la lista de elementos Comment de un Post
+     * @param comment comentario que se agregará a la lista
+     */
     public void addComment(Comment comment) {
         this.ptrComments.add(comment);
-    }
-
-    public void show() {
-        System.out.println(this.userID);
-        System.out.println(this.id);
-        System.out.println(this.tittle);
-        System.out.println(this.body);
     }
     
 }

@@ -27,18 +27,34 @@ public class Company {
         this.bs = bs;
     }
 
+    /**
+     * Metodo que permite acceder al nombre de una compañia
+     * @return String correspondiente al nombre de una compañia
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Metodo que permite acceder a la catchPhrase de una compañia
+     * @return String correspondiente a la catchPhrase de una compañia
+     */
     public String getCatchPhrase() {
         return catchPhrase;
     }
 
+    /**
+     * Metodo que permite acceder al bs de una compañia
+     * @return String correspondiente al bs de una compañia
+     */
     public String getBs() {
         return bs;
     }
 
+    /**
+     * Metodo que condensa la informacion de una compañia
+     * @return StringBuffer que contiene la información textual de una comañia condensada y organizada
+     */
     public StringBuffer show() {
         StringBuffer sb = new StringBuffer("Company: {\n");
         sb.append("\t"+this.name+"\n");
