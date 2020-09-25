@@ -376,14 +376,24 @@ public abstract class Arbol {
             return c;
         }
         
+        /**
+         * Método que condensa la información de varios Comment de una lista de elementos Comment
+         * @param As
+         * @return 
+         */
         public StringBuffer showPost(ArbolNA As){
             StringBuffer sb = new StringBuffer("");
-            //sb.append("Posted by:\t"+As.BuscarUsuario(userID).userName+"\n");
             sb.append("Post's Tittle:\t"+tittle+"\n\n");
             sb.append(body+"\n");
             return sb;
         }
 
+        /**
+         * Método que condensa la información de varios Comment de una lista de elementos Comment
+         * @param As Arbol con el cual se está trabajando
+         * @param NC Primer elemento de una lista de NodoComment
+         * @return StringBuffer que contiene la información condensada y organizada de todos los NodoComment a partir de NC
+         */
         public StringBuffer showComments(ArbolNA As, NodoComment NC) {
             StringBuffer sb = new StringBuffer("");
             NodoComment c = NC;
@@ -435,25 +445,42 @@ public abstract class Arbol {
             }
         }
 
-        /*
-        Getters de atributos
-        */
+        /**
+         * Metodo que retorna el ID de un Comment
+         * @return Entero correspondiente a un ID de Comment
+         */
         public int getId() {
             return id;
         }
-
+        
+        /**
+         * Metodo que retorna el ID del post al que pertenece un Comment
+         * @return Entero correspondiente al ID de un post
+         */
         public int getPostID() {
             return postID;
         }
 
+        /**
+         * Metodo que retorna el nombre de un Comment
+         * @return String correspondiente al nombre de un Comment
+         */
         public String getName() {
             return name;
         }
 
+        /**
+         * Metodo que retorna el email de un Comment
+         * @return String correspondiente al email de un Comment
+         */
         public String getEmail() {
             return email;
         }
 
+        /**
+         * Metodo que retorna el cuerpo de un Comment   
+         * @return String correspondiente al cuerpo de un Comment
+         */
         public String getBody() {
             return body;
         }
@@ -476,6 +503,11 @@ public abstract class Arbol {
             return this;
         }
 
+        /**
+         * Método que añade a un NodoComment, sus hermanos
+         * @param comments Primer elemento de la lista de comentarios Comment que se añadirá
+         * @return NodoComment correspondiente al inicio de la lista de elementos NodoComment
+         */
         private NodoComment hermanosComment(Lista<Comment> comments) {
             try{
                 Lista<Comment> p = comments;
@@ -493,7 +525,7 @@ public abstract class Arbol {
     }
 
     /**
-     * Getter que permite acceder a la lista enlazada de elementos User relacionada al Arbol
+     * Metodo que permite acceder a la lista enlazada de elementos User relacionada al Arbol
      * @return Primer elemento de una lista enlazada de elementos User
      */
     public Lista<User> getUsers() {
@@ -501,7 +533,7 @@ public abstract class Arbol {
     }
 
     /**
-     * Getter que permite acceder a la raíz de un Arbol
+     * Metodo que permite acceder a la raíz de un Arbol
      * @return NodoRaiz de un Arbol
      */
     public NodoRaiz getNR() {
