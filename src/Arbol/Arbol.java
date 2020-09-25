@@ -250,7 +250,6 @@ public abstract class Arbol {
         /**
          * Método mediante el cual se añade un NodoPost cierta lista que contiene elementos Post
          * @param post Objeto Post que se interpretará para traducirse en un NodoPost que se agregará a la lista
-         * @return Primer elemento de una lista enlazada de elementos Post
          */
         public void setNodoP(Post post) {
             if (linkP == null) {
@@ -427,8 +426,8 @@ public abstract class Arbol {
         
         /**
          * Método que añade a un NodoPost, sus hermanos
-         * @param comments Primer elemento de la lista de publicaciones Post que se añadirá
-         * @return NodoComment correspondiente al inicio de la lista de elementos NodoPost
+         * @param posts Primer elemento de la lista de publicaciones Post que se añadirá
+         * @return NodoPost correspondiente al inicio de la lista de elementos NodoPost
          */
         public NodoPost hermanosPost(Lista<Post> posts) {
             Lista<Post> p = posts;

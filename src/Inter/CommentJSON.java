@@ -21,6 +21,7 @@ public class CommentJSON implements Extraccion{
 
     /**
      * Constructor de la clase CommentJSON
+     * @param ruta direccion en la cual se encuentra el archivo a interpretar
      */
     public CommentJSON(String ruta) {
         this.ruta = new File(ruta);

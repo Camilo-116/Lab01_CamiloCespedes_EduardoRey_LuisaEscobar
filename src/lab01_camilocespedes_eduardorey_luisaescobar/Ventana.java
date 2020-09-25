@@ -191,49 +191,49 @@ public class Ventana extends javax.swing.JFrame {
         jLabel7.setText("Archivo de Comentarios:");
         ventanaArchivos.getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 192, 160, -1));
 
-        exU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/sinPeq.png"))); // NOI18N
+        exU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/explorarSin.png"))); // NOI18N
         exU.setBorderPainted(false);
         exU.setContentAreaFilled(false);
-        exU.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/conPeq.png"))); // NOI18N
+        exU.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/explorarCon.png"))); // NOI18N
         exU.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 exUActionPerformed(evt);
             }
         });
-        ventanaArchivos.getContentPane().add(exU, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 80, 130, 40));
+        ventanaArchivos.getContentPane().add(exU, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 80, 120, 40));
 
-        exC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/sinPeq.png"))); // NOI18N
+        exC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/explorarSin.png"))); // NOI18N
         exC.setBorderPainted(false);
         exC.setContentAreaFilled(false);
-        exC.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/conPeq.png"))); // NOI18N
+        exC.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/explorarCon.png"))); // NOI18N
         exC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 exCActionPerformed(evt);
             }
         });
-        ventanaArchivos.getContentPane().add(exC, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 180, 130, -1));
+        ventanaArchivos.getContentPane().add(exC, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 180, 120, -1));
 
-        exP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/sinPeq.png"))); // NOI18N
+        exP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/explorarSin.png"))); // NOI18N
         exP.setBorderPainted(false);
         exP.setContentAreaFilled(false);
-        exP.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/conPeq.png"))); // NOI18N
+        exP.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/explorarCon.png"))); // NOI18N
         exP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 exPActionPerformed(evt);
             }
         });
-        ventanaArchivos.getContentPane().add(exP, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 130, 130, -1));
+        ventanaArchivos.getContentPane().add(exP, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 130, 120, -1));
 
-        Cargar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/sin.png"))); // NOI18N
+        Cargar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/cargarSin.png"))); // NOI18N
         Cargar.setBorderPainted(false);
         Cargar.setContentAreaFilled(false);
-        Cargar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/encima.png"))); // NOI18N
+        Cargar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/cargarCon.png"))); // NOI18N
         Cargar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CargarActionPerformed(evt);
             }
         });
-        ventanaArchivos.getContentPane().add(Cargar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 230, 210, 39));
+        ventanaArchivos.getContentPane().add(Cargar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 230, 180, 39));
 
         bckg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/bgFC.png"))); // NOI18N
         ventanaArchivos.getContentPane().add(bckg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -418,10 +418,10 @@ public class Ventana extends javax.swing.JFrame {
 
         getContentPane().add(panelDeVisualizacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 40, 780, 640));
 
-        cargarArchivos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/sin.png"))); // NOI18N
+        cargarArchivos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/cargarArSin.png"))); // NOI18N
         cargarArchivos.setBorderPainted(false);
         cargarArchivos.setContentAreaFilled(false);
-        cargarArchivos.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/encima.png"))); // NOI18N
+        cargarArchivos.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/cargarArCon.png"))); // NOI18N
         cargarArchivos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cargarArchivosActionPerformed(evt);
@@ -652,9 +652,6 @@ public class Ventana extends javax.swing.JFrame {
 
     }//GEN-LAST:event_CargarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Background;

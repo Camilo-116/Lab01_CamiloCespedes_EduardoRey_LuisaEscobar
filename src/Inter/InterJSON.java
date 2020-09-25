@@ -22,6 +22,9 @@ public class InterJSON {
 
     /**
      * Constructor de la clase InterJSON
+     * @param rutaU ruta del archivo de usuarios a interpretar
+     * @param rutaP ruta del archivo de publicaciones a interpretar
+     * @param rutaC ruta del archivo de comentarios a interpretar
      */
     public InterJSON(String rutaU, String rutaP, String rutaC) {
         this.userJ = new UserJSON(rutaU);

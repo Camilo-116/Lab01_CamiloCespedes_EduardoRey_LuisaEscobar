@@ -26,6 +26,7 @@ public class PostJSON implements Extraccion {
 
     /**
      * Constructor de la clase PostJSON 
+     * @param ruta direccion del archivo a interpretar
      */
     public PostJSON(String ruta) {
         this.ruta = new File(ruta);

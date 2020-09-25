@@ -21,7 +21,7 @@ public class UserJSON implements Extraccion {
 
     /**
      * Constructor de la clase UserJSON 
-     * 
+     * @param ruta direccion del archivo a interpretar
      */
     public UserJSON(String ruta) {
         this.ruta = new File(ruta);
