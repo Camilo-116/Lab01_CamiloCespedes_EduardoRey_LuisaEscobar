@@ -52,8 +52,12 @@ public class ArbolNA extends Arbol {
     public NodoUser BuscarUsuario (String userName){
         NodoUser u = NR.linkU;
         while (u != null) {
-            if (u.userName.equals(userName)){
-                return u;
+            try{
+                if (u.userName.equals(userName)){
+                    return u;
+                }
+            }catch(NullPointerException ex){
+                
             }
             u = u.linkU;
         }
@@ -63,8 +67,12 @@ public class ArbolNA extends Arbol {
     public NodoUser BuscarUsuarioEmail (String email){
         NodoUser u = NR.linkU;
         while (u != null) {
-            if (u.email.equals(email)){
+            try{
+                if (u.email.equals(email)){
                 return u;
+                }
+            }catch(NullPointerException ex){
+                
             }
             u = u.linkU;
         }
@@ -93,8 +101,12 @@ public class ArbolNA extends Arbol {
         while (u != null) {
             p = u.linkP;
             while (p != null){
-                if (p.tittle.equals(title)){
-                    return p;
+                try{
+                    if (p.tittle.equals(title)){
+                        return p;
+                    }
+                }catch(NullPointerException ex){
+                    
                 }
                 p = p.linkP;
             }

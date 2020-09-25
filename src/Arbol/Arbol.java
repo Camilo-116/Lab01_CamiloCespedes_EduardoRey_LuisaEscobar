@@ -262,13 +262,17 @@ public abstract class Arbol {
          * @param post Objeto Post que se interpretará para traducirse en un NodoPost
          */
         public NodoPost(Post post) {
-            linkC = new NodoComment((Comment)post.getComments().getObject());
-            linkC = linkC.hermanosComment(post.getComments().linkOb);
-            linkP = null;
-            this.id = post.getId();
-            this.userID = post.getUserID();
-            this.tittle = post.getTittle();
-            this.body = post.getBody();
+            try{
+                linkC = new NodoComment((Comment)post.getComments().getObject());
+                linkC = linkC.hermanosComment(post.getComments().linkOb);
+                linkP = null;
+                this.id = post.getId();
+                this.userID = post.getUserID();
+                this.tittle = post.getTittle();
+                this.body = post.getBody();
+            }catch(NullPointerException ex){
+                
+            }
         }
 
         /*
@@ -350,11 +354,15 @@ public abstract class Arbol {
         
         public NodoPost hermanosPost(Lista<Post> posts) {
             Lista<Post> p = posts;
-            while (p.linkOb != null){
+            try{
+                while (p.linkOb != null){
+                    this.addNodoP((Post)p.getObject());
+                    p = p.linkOb;
+                }
                 this.addNodoP((Post)p.getObject());
-                p = p.linkOb;
+            }catch(NullPointerException ex){
+                
             }
-            this.addNodoP((Post)p.getObject());
             return this;
         }
 
@@ -418,11 +426,13 @@ public abstract class Arbol {
          */
         public NodoComment(Comment comment) {
             linkC = null;
-            this.id = comment.getId();
-            this.postID = comment.getPostID();
-            this.name = comment.getName();
-            this.email = comment.getEmail();
-            this.body = comment.getBody();
+            if (comment != null){
+                this.id = comment.getId();
+                this.postID = comment.getPostID();
+                this.name = comment.getName();
+                this.email = comment.getEmail();
+                this.body = comment.getBody();
+            }
         }
 
         /*
@@ -467,12 +477,16 @@ public abstract class Arbol {
         }
 
         private NodoComment hermanosComment(Lista<Comment> comments) {
-            Lista<Comment> p = comments;
-            while (p.linkOb != null){
+            try{
+                Lista<Comment> p = comments;
+                while (p.linkOb != null){
                 this.addNodoC((Comment)p.getObject());
                 p = p.linkOb;
+                }
+                this.addNodoC((Comment)p.getObject());
+            }catch (Exception e){
+                
             }
-            this.addNodoC((Comment)p.getObject());
             return this;
         }
         

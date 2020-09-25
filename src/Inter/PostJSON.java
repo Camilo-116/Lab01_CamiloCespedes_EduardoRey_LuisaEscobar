@@ -8,6 +8,7 @@ package Inter;
 import java.io.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
 import lab01_camilocespedes_eduardorey_luisaescobar.*;
 
 /**
@@ -26,8 +27,8 @@ public class PostJSON implements Extraccion {
     /**
      * Constructor de la clase PostJSON 
      */
-    public PostJSON() {
-        ruta = new File("src" + File.separator + "TXTs" + File.separator + "Posts.txt");
+    public PostJSON(String ruta) {
+        this.ruta = new File(ruta);
     }
 
     /**
@@ -44,11 +45,15 @@ public class PostJSON implements Extraccion {
         Lista<Post> posts = new Lista();
         Lista<Integer> ui = userIDs, i = ids;
         Lista<String> t = tittles, b = bodies;
-        while(i.linkOb != null) {
+        try{
+            while(i.linkOb != null) {
+                posts.add(new Post(ui.getObject(), i.getObject(), t.getObject(), b.getObject()));
+                ui = ui.linkOb; i = i.linkOb; t = t.linkOb; b = b.linkOb;
+            }
             posts.add(new Post(ui.getObject(), i.getObject(), t.getObject(), b.getObject()));
-            ui = ui.linkOb; i = i.linkOb; t = t.linkOb; b = b.linkOb;
+        }catch (NullPointerException e){
+            JOptionPane.showMessageDialog(null, "El archivo de publicaciones escogido es inválido. Ingrese uno nuevamente", "ERROR", 0);
         }
-        posts.add(new Post(ui.getObject(), i.getObject(), t.getObject(), b.getObject()));
         return posts;
     }
 

@@ -7,6 +7,7 @@ package Inter;
 
 import java.io.*;
 import java.util.regex.*;
+import javax.swing.JOptionPane;
 import lab01_camilocespedes_eduardorey_luisaescobar.*;
 
 
@@ -21,8 +22,8 @@ public class CommentJSON implements Extraccion{
     /**
      * Constructor de la clase CommentJSON
      */
-    public CommentJSON() {
-        ruta = new File("src" + File.separator + "TXTs" + File.separator + "Comments.txt");
+    public CommentJSON(String ruta) {
+        this.ruta = new File(ruta);
     }
     
     /**
@@ -39,11 +40,16 @@ public class CommentJSON implements Extraccion{
         Lista<Comment> comments = new Lista();
         Lista<Integer> i = ids, pi = postIDs;
         Lista<String> e = emails, n = names, b = bodies;
-        while (i.linkOb != null) {
+        try{
+            while (i.linkOb != null) {
+                comments.add(new Comment(pi.getObject(), i.getObject(), n.getObject(), e.getObject(), b.getObject()));
+                i = i.linkOb; pi = pi.linkOb; e = e.linkOb; n = n.linkOb; b = b.linkOb;
+            }
             comments.add(new Comment(pi.getObject(), i.getObject(), n.getObject(), e.getObject(), b.getObject()));
-            i = i.linkOb; pi = pi.linkOb; e = e.linkOb; n = n.linkOb; b = b.linkOb;
+        }catch(NullPointerException ex){
+            JOptionPane.showMessageDialog(null, "El archivo de comentarios escogido es inválido. Ingrese uno nuevamente", "ERROR", 0);
         }
-        comments.add(new Comment(pi.getObject(), i.getObject(), n.getObject(), e.getObject(), b.getObject()));
+            
         return comments;
     }
 

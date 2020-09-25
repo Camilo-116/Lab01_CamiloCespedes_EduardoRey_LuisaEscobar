@@ -48,6 +48,7 @@ public class Lab01_CamiloCespedes_EduardoRey_LuisaEscobar {
             public void run() {
                 ventana = new Ventana();
                 ventana.setVisible(true);
+                ventana.setTitle("El nombre de tu Empresa aquí");
             }
         });
     }

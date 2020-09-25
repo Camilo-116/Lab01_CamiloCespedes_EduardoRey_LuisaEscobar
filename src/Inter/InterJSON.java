@@ -5,6 +5,7 @@
  */
 package Inter;
 
+import javax.swing.JOptionPane;
 import lab01_camilocespedes_eduardorey_luisaescobar.*;
 
 /**
@@ -22,10 +23,10 @@ public class InterJSON {
     /**
      * Constructor de la clase InterJSON
      */
-    public InterJSON() {
-        this.userJ = new UserJSON();
-        this.postJ = new PostJSON();
-        this.commentJ = new CommentJSON();
+    public InterJSON(String rutaU, String rutaP, String rutaC) {
+        this.userJ = new UserJSON(rutaU);
+        this.postJ = new PostJSON(rutaP);
+        this.commentJ = new CommentJSON(rutaC);
     }
 
     /**
@@ -44,8 +45,12 @@ public class InterJSON {
         while (po != null) {
             c = comments;
             while (c != null) {
-                if (po.getObject().getId() == c.getObject().getPostID()) {
-                    po.getObject().addComment(c.getObject());
+                try{
+                    if (po.getObject().getId() == c.getObject().getPostID()) {
+                        po.getObject().addComment(c.getObject());
+                    }
+                }catch(Exception e){
+                    
                 }
                 c = c.linkOb;
             }
@@ -73,8 +78,12 @@ public class InterJSON {
         while (u != null) {
             p = postsT;
             while (p != null) {
-                if (u.getObject().getId() == p.getObject().getUserID()) {
+                try{
+                    if (u.getObject().getId() == p.getObject().getUserID()) {
                     u.getObject().addPost(p.getObject());
+                    }
+                }catch(NullPointerException ex){
+                    
                 }
                 p = p.linkOb;
             }

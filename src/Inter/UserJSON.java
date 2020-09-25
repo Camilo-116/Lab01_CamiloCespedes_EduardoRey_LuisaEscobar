@@ -8,6 +8,7 @@ package Inter;
 import java.io.*;
 import java.util.Queue;
 import java.util.regex.*;
+import javax.swing.JOptionPane;
 import lab01_camilocespedes_eduardorey_luisaescobar.*;
 
 /**
@@ -22,8 +23,8 @@ public class UserJSON implements Extraccion {
      * Constructor de la clase UserJSON 
      * 
      */
-    public UserJSON() {
-        ruta = new File("src" + File.separator + "TXTs" + File.separator + "Users.txt");
+    public UserJSON(String ruta) {
+        this.ruta = new File(ruta);
     }
 
     /**
@@ -46,11 +47,15 @@ public class UserJSON implements Extraccion {
         Lista<String> n = names, un = userNames, e = emails, p = phones, w = webSites;
         Lista<Address> a = addresses;
         Lista<Company> c = companies;
-        while (i.linkOb != null) {
+        try{
+            while (i.linkOb != null) {
+                u.add(new User(i.getObject(), n.getObject(), un.getObject(), e.getObject(), (Address) a.getObject(), p.getObject(), w.getObject(), (Company) c.getObject()));
+                i = i.linkOb; n = n.linkOb; un = un.linkOb; e = e.linkOb; a = a.linkOb; p = p.linkOb; w = w.linkOb; c = c.linkOb;
+            }
             u.add(new User(i.getObject(), n.getObject(), un.getObject(), e.getObject(), (Address) a.getObject(), p.getObject(), w.getObject(), (Company) c.getObject()));
-            i = i.linkOb; n = n.linkOb; un = un.linkOb; e = e.linkOb; a = a.linkOb; p = p.linkOb; w = w.linkOb; c = c.linkOb;
+        }catch (NullPointerException ex){
+            JOptionPane.showMessageDialog(null, "El archivo de usuarios escogido es inválido. Ingrese uno nuevamente", "ERROR", 0);
         }
-        u.add(new User(i.getObject(), n.getObject(), un.getObject(), e.getObject(), (Address) a.getObject(), p.getObject(), w.getObject(), (Company) c.getObject()));
         return u;
     }
 
@@ -69,11 +74,15 @@ public class UserJSON implements Extraccion {
         Lista<Address> addresses = new Lista();
         Lista<String> st = streets, su = suites, c = cities, z = zipcodes;
         Lista<Geo> g = geos;
-        while (st.linkOb != null) {
+        try{
+            while (st.linkOb != null) {
+                addresses.add(new Address(st.getObject(), su.getObject(), c.getObject(), z.getObject(), (Geo) g.getObject()));
+                st = st.linkOb; su = su.linkOb; c = c.linkOb; z = z.linkOb; g = g.linkOb;
+            }
             addresses.add(new Address(st.getObject(), su.getObject(), c.getObject(), z.getObject(), (Geo) g.getObject()));
-            st = st.linkOb; su = su.linkOb; c = c.linkOb; z = z.linkOb; g = g.linkOb;
+        }catch(NullPointerException ex){
+            
         }
-        addresses.add(new Address(st.getObject(), su.getObject(), c.getObject(), z.getObject(), (Geo) g.getObject()));
         return addresses;
     }
 
@@ -88,11 +97,15 @@ public class UserJSON implements Extraccion {
 
         Lista<Geo> geos = new Lista();
         Lista<Float> la = latitudes, lo = longitudes;
-        while (la.linkOb != null) {
-            geos.add(new Geo(la.getObject(), lo.getObject()));
-            la = la.linkOb; lo = lo.linkOb;
+        try{
+            while (la.linkOb != null) {
+                geos.add(new Geo(la.getObject(), lo.getObject()));
+                la = la.linkOb; lo = lo.linkOb;
+            }
+             geos.add(new Geo(la.getObject(), lo.getObject()));
+        }catch(NullPointerException ex){
+            
         }
-         geos.add(new Geo(la.getObject(), lo.getObject()));
         return geos;
     }
 
@@ -108,11 +121,15 @@ public class UserJSON implements Extraccion {
 
         Lista<Company> companies = new Lista();
         Lista<String> n = names, cp = catchPhrases, b = bss;
-        while (n.linkOb != null) {
+        try{
+            while (n.linkOb != null) {
+                companies.add(new Company(n.getObject(), cp.getObject(), b.getObject()));
+                n = n.linkOb; cp = cp.linkOb; b = b.linkOb;
+            }
             companies.add(new Company(n.getObject(), cp.getObject(), b.getObject()));
-            n = n.linkOb; cp = cp.linkOb; b = b.linkOb;
+        }catch(NullPointerException ex){
+            
         }
-        companies.add(new Company(n.getObject(), cp.getObject(), b.getObject()));
         return companies;
     }
 

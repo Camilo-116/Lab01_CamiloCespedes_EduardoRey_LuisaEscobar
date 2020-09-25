@@ -9,7 +9,9 @@ import Arbol.Arbol.*;
 import Arbol.ArbolNA;
 import Inter.InterJSON;
 import java.awt.CardLayout;
+import java.io.File;
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -26,25 +28,31 @@ public class Ventana extends javax.swing.JFrame {
         setSize(1285, 750);
         setLocationRelativeTo(null);
         setResizable(false);
-        master = new InterJSON();
         cl = (CardLayout) panelDeVisualizacion.getLayout();
-        As = new ArbolNA(master.Transformar());//Se crea el arreglo de usuarios con todos sus atributos, incluyendo posts y comentarios, y se envia este al Árbol que se creará
-        showAreaPosts(posts, As.getNR());
     }
-    public void showAreaPosts(JTextArea TXA, NodoRaiz NR){
-        NodoUser u = NR.getLinkU();
-        while (u != null) {
-            NodoPost p = u.getLinkP();
-            while (p != null) {
-                TXA.append("Posted by:   "+As.BuscarUsuario(p.getUserID()).getUserName()+"  |  UserID:  "+p.getUserID()+"\n");
-                TXA.append("ID:    "+p.getId()+"\n");
-                showArea(TXA, p);
-                TXA.append("\t____________________________________________________________"+"\n\n");
-                p = p.getLinkP();
+
+    public void showAreaPosts(JTextArea TXA, NodoRaiz NR) {
+        if(NR.getLinkU().getName() != null){
+            TXA.setText("");
+            try {
+                NodoUser u = NR.getLinkU();
+                while (u != null) {
+                    NodoPost p = u.getLinkP();
+                    while (p != null) {
+                        TXA.append("Posted by:   " + As.BuscarUsuario(p.getUserID()).getUserName() + "  |  UserID:  " + p.getUserID() + "\n");
+                        TXA.append("ID:    " + p.getId() + "\n");
+                        showArea(TXA, p);
+                        TXA.append("\t____________________________________________________________" + "\n\n");
+                        p = p.getLinkP();
+                    }
+                    u = u.getLinkU();
+                }
+            } catch (NullPointerException ex) {
+
             }
-            u = u.getLinkU();
         }
     }
+
     public void showArea(JTextArea TXA, NodoUser NU) {
         StringBuffer sb = NU.show();
         TXA.append("" + sb);
@@ -56,8 +64,11 @@ public class Ventana extends javax.swing.JFrame {
     }
 
     public void showArea(JTextArea TXA, NodoPost NP, NodoComment NC) {
-        StringBuffer sb = NP.showComments(As, NC);
-        TXA.append("" + sb);
+        TXA.setText("");
+        if (NC.getName() != null) {
+            StringBuffer sb = NP.showComments(As, NC);
+            TXA.append("" + sb);
+        }
     }
 
     /**
@@ -69,6 +80,19 @@ public class Ventana extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        ventanaArchivos = new javax.swing.JFrame();
+        cargarA = new javax.swing.JLabel();
+        rutaP = new javax.swing.JTextField();
+        rutaC = new javax.swing.JTextField();
+        rutaU = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        exU = new javax.swing.JButton();
+        exC = new javax.swing.JButton();
+        exP = new javax.swing.JButton();
+        Cargar = new javax.swing.JButton();
+        bckg = new javax.swing.JLabel();
         panelDeVisualizacion = new javax.swing.JPanel();
         Posts = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -79,7 +103,7 @@ public class Ventana extends javax.swing.JFrame {
         post = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
         comments = new javax.swing.JTextArea();
-        jButton1 = new javax.swing.JButton();
+        volver1 = new javax.swing.JButton();
         UsuarioIndividual = new javax.swing.JPanel();
         IconoUsuario = new javax.swing.JLabel();
         nombreDeUsuario = new javax.swing.JLabel();
@@ -90,10 +114,11 @@ public class Ventana extends javax.swing.JFrame {
         InfoAdicional = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         infoUsuario = new javax.swing.JTextArea();
-        jButton2 = new javax.swing.JButton();
+        volver2 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        cargarArchivos = new javax.swing.JButton();
+        salir = new javax.swing.JButton();
         panelDeBusqueda1 = new javax.swing.JPanel();
         BuscarUsuario = new javax.swing.JLabel();
         BuscarID = new javax.swing.JLabel();
@@ -111,6 +136,86 @@ public class Ventana extends javax.swing.JFrame {
         separador2 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
         Background = new javax.swing.JLabel();
+
+        ventanaArchivos.setMaximumSize(new java.awt.Dimension(683, 301));
+        ventanaArchivos.setMinimumSize(new java.awt.Dimension(683, 301));
+        ventanaArchivos.setResizable(false);
+        ventanaArchivos.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        cargarA.setFont(new java.awt.Font("Century Schoolbook", 0, 36)); // NOI18N
+        cargarA.setText("Cargar Archivos");
+        ventanaArchivos.getContentPane().add(cargarA, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 13, -1, -1));
+
+        rutaP.setEditable(false);
+        ventanaArchivos.getContentPane().add(rutaP, new org.netbeans.lib.awtextra.AbsoluteConstraints(213, 141, 307, -1));
+
+        rutaC.setEditable(false);
+        ventanaArchivos.getContentPane().add(rutaC, new org.netbeans.lib.awtextra.AbsoluteConstraints(213, 189, 307, -1));
+
+        rutaU.setEditable(false);
+        ventanaArchivos.getContentPane().add(rutaU, new org.netbeans.lib.awtextra.AbsoluteConstraints(213, 92, 307, -1));
+
+        jLabel4.setFont(new java.awt.Font("Century Schoolbook", 0, 13)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel4.setText("Archivo de Usuarios:");
+        ventanaArchivos.getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 91, 130, -1));
+
+        jLabel6.setFont(new java.awt.Font("Century Schoolbook", 0, 13)); // NOI18N
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel6.setText("Archivo de Publicaciones:");
+        ventanaArchivos.getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(42, 144, 160, -1));
+
+        jLabel7.setFont(new java.awt.Font("Century Schoolbook", 0, 13)); // NOI18N
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel7.setText("Archivo de Comentarios:");
+        ventanaArchivos.getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 192, 160, -1));
+
+        exU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/sinPeq.png"))); // NOI18N
+        exU.setBorderPainted(false);
+        exU.setContentAreaFilled(false);
+        exU.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/conPeq.png"))); // NOI18N
+        exU.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exUActionPerformed(evt);
+            }
+        });
+        ventanaArchivos.getContentPane().add(exU, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 80, 130, 40));
+
+        exC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/sinPeq.png"))); // NOI18N
+        exC.setBorderPainted(false);
+        exC.setContentAreaFilled(false);
+        exC.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/conPeq.png"))); // NOI18N
+        exC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exCActionPerformed(evt);
+            }
+        });
+        ventanaArchivos.getContentPane().add(exC, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 180, 130, -1));
+
+        exP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/sinPeq.png"))); // NOI18N
+        exP.setBorderPainted(false);
+        exP.setContentAreaFilled(false);
+        exP.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/conPeq.png"))); // NOI18N
+        exP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exPActionPerformed(evt);
+            }
+        });
+        ventanaArchivos.getContentPane().add(exP, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 130, 130, -1));
+
+        Cargar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/sin.png"))); // NOI18N
+        Cargar.setBorderPainted(false);
+        Cargar.setContentAreaFilled(false);
+        Cargar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/encima.png"))); // NOI18N
+        Cargar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CargarActionPerformed(evt);
+            }
+        });
+        ventanaArchivos.getContentPane().add(Cargar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 230, 210, 39));
+
+        bckg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/bgFC.png"))); // NOI18N
+        ventanaArchivos.getContentPane().add(bckg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1280, 720));
@@ -182,21 +287,21 @@ public class Ventana extends javax.swing.JFrame {
 
         splitPostIndividual.setRightComponent(jScrollPane2);
 
-        jButton1.setBackground(new java.awt.Color(245, 244, 236));
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(245, 244, 236));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/volver.png"))); // NOI18N
-        jButton1.setBorderPainted(false);
-        jButton1.setContentAreaFilled(false);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jButton1.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
-        jButton1.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/volver.png"))); // NOI18N
-        jButton1.setDisabledSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/volver2.png"))); // NOI18N
-        jButton1.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButton1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/volver2.png"))); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        volver1.setBackground(new java.awt.Color(245, 244, 236));
+        volver1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        volver1.setForeground(new java.awt.Color(245, 244, 236));
+        volver1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/volver.png"))); // NOI18N
+        volver1.setBorderPainted(false);
+        volver1.setContentAreaFilled(false);
+        volver1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        volver1.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        volver1.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/volver.png"))); // NOI18N
+        volver1.setDisabledSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/volver2.png"))); // NOI18N
+        volver1.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        volver1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/volver2.png"))); // NOI18N
+        volver1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                volver1ActionPerformed(evt);
             }
         });
 
@@ -210,7 +315,7 @@ public class Ventana extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(PostIndividualLayout.createSequentialGroup()
                 .addGap(330, 330, 330)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(volver1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         PostIndividualLayout.setVerticalGroup(
@@ -219,7 +324,7 @@ public class Ventana extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(splitPostIndividual, javax.swing.GroupLayout.PREFERRED_SIZE, 563, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(volver1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
@@ -268,17 +373,17 @@ public class Ventana extends javax.swing.JFrame {
 
         UsuarioIndividual.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, 670, 220));
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/volver.png"))); // NOI18N
-        jButton2.setBorderPainted(false);
-        jButton2.setContentAreaFilled(false);
-        jButton2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/volver2.png"))); // NOI18N
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        volver2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        volver2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/volver.png"))); // NOI18N
+        volver2.setBorderPainted(false);
+        volver2.setContentAreaFilled(false);
+        volver2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/volver2.png"))); // NOI18N
+        volver2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                volver2ActionPerformed(evt);
             }
         });
-        UsuarioIndividual.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 530, 100, 40));
+        UsuarioIndividual.add(volver2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 530, 100, 40));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/cuadro.png"))); // NOI18N
         UsuarioIndividual.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 0, 390, 90));
@@ -292,36 +397,50 @@ public class Ventana extends javax.swing.JFrame {
 
         getContentPane().add(panelDeVisualizacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 40, 780, 640));
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/salir.png"))); // NOI18N
-        jButton3.setBorderPainted(false);
-        jButton3.setContentAreaFilled(false);
-        jButton3.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/salircon.png"))); // NOI18N
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        cargarArchivos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/sin.png"))); // NOI18N
+        cargarArchivos.setBorderPainted(false);
+        cargarArchivos.setContentAreaFilled(false);
+        cargarArchivos.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/encima.png"))); // NOI18N
+        cargarArchivos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                cargarArchivosActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 610, 100, -1));
+        getContentPane().add(cargarArchivos, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 620, 190, -1));
+
+        salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/salir.png"))); // NOI18N
+        salir.setBorderPainted(false);
+        salir.setContentAreaFilled(false);
+        salir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/salircon.png"))); // NOI18N
+        salir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                salirActionPerformed(evt);
+            }
+        });
+        getContentPane().add(salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 620, 100, -1));
 
         panelDeBusqueda1.setBackground(new java.awt.Color(245, 244, 236));
         panelDeBusqueda1.setForeground(new java.awt.Color(245, 244, 236));
         panelDeBusqueda1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         BuscarUsuario.setBackground(new java.awt.Color(245, 244, 236));
-        BuscarUsuario.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        BuscarUsuario.setFont(new java.awt.Font("Century Schoolbook", 0, 24)); // NOI18N
         BuscarUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/buscus.png"))); // NOI18N
         panelDeBusqueda1.add(BuscarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 346, 60));
 
+        BuscarID.setFont(new java.awt.Font("Century Schoolbook", 0, 14)); // NOI18N
         BuscarID.setText("ID de Usuario:");
-        panelDeBusqueda1.add(BuscarID, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 53, -1, -1));
+        panelDeBusqueda1.add(BuscarID, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, -1, -1));
 
+        buscarUserName.setFont(new java.awt.Font("Century Schoolbook", 0, 14)); // NOI18N
         buscarUserName.setText("Nombre de Usuario:");
-        panelDeBusqueda1.add(buscarUserName, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
+        panelDeBusqueda1.add(buscarUserName, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, -1));
         panelDeBusqueda1.add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 129, -1));
         panelDeBusqueda1.add(userName, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, 180, -1));
 
+        jLabel5.setFont(new java.awt.Font("Century Schoolbook", 0, 14)); // NOI18N
         jLabel5.setText("ó");
-        panelDeBusqueda1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, -1, -1));
+        panelDeBusqueda1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 67, 20, 30));
 
         buscarUser.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         buscarUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/usuariosin.png"))); // NOI18N
@@ -333,7 +452,7 @@ public class Ventana extends javax.swing.JFrame {
                 buscarUserActionPerformed(evt);
             }
         });
-        panelDeBusqueda1.add(buscarUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, 190, 40));
+        panelDeBusqueda1.add(buscarUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, 190, 40));
 
         separador1.setBackground(new java.awt.Color(245, 244, 236));
         separador1.setForeground(new java.awt.Color(245, 244, 236));
@@ -345,12 +464,13 @@ public class Ventana extends javax.swing.JFrame {
         panelDeBusqueda2.setForeground(new java.awt.Color(245, 244, 236));
         panelDeBusqueda2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        BuscarPost.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        BuscarPost.setFont(new java.awt.Font("Century Schoolbook", 0, 24)); // NOI18N
         BuscarPost.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/buspos.png"))); // NOI18N
-        panelDeBusqueda2.add(BuscarPost, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 346, 60));
+        panelDeBusqueda2.add(BuscarPost, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 346, 50));
 
+        BuscarIdPost.setFont(new java.awt.Font("Century Schoolbook", 0, 14)); // NOI18N
         BuscarIdPost.setText("ID de Publicación:");
-        panelDeBusqueda2.add(BuscarIdPost, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, -1, 20));
+        panelDeBusqueda2.add(BuscarIdPost, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, 20));
         panelDeBusqueda2.add(idPost, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 129, 30));
 
         buscarPost.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -368,7 +488,7 @@ public class Ventana extends javax.swing.JFrame {
         separador2.setForeground(new java.awt.Color(245, 244, 236));
         panelDeBusqueda2.add(separador2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 42, 370, 140));
 
-        getContentPane().add(panelDeBusqueda2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 450, -1, 180));
+        getContentPane().add(panelDeBusqueda2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 430, -1, 180));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/logo.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, -1, -1));
@@ -381,74 +501,135 @@ public class Ventana extends javax.swing.JFrame {
 
     private void buscarPostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarPostActionPerformed
         if (!idPost.getText().isEmpty()) {
-            int IdPost = Integer.parseInt(idPost.getText());
-            if (As.BuscarPost(IdPost) != null) {
-                showArea(post, As.BuscarPost(IdPost));
-                showArea(comments, As.BuscarPost(IdPost), As.BuscarPost(IdPost).getLinkC());
-                cl.show(panelDeVisualizacion, "Pi");
-            }else{
-                cl.show(panelDeVisualizacion, "Ps");
-                JOptionPane.showMessageDialog(null, "No se encontró el post", "ERROR", 0);
+            try {
+                int IdPost = Integer.parseInt(idPost.getText());
+                if (As.BuscarPost(IdPost) != null) {
+                    showArea(post, As.BuscarPost(IdPost));
+                    showArea(comments, As.BuscarPost(IdPost), As.BuscarPost(IdPost).getLinkC());
+                    cl.show(panelDeVisualizacion, "Pi");
+                } else {
+                    cl.show(panelDeVisualizacion, "Ps");
+                    JOptionPane.showMessageDialog(null, "No se encontró el post", "ERROR", 0);
+                }
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(null, "El ID de post debe ser un carácter numérico", "ERROR", 0);
             }
         } else {
             cl.show(panelDeVisualizacion, "Ps");
             JOptionPane.showMessageDialog(null, "Debe llenar el campo de identificación", "ERROR", 0);
         }
         idPost.setText("");
-        
+
     }//GEN-LAST:event_buscarPostActionPerformed
 
     private void buscarUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarUserActionPerformed
-        infoUsuario.setText("");
-        if (!id.getText().isEmpty() || !userName.getText().isEmpty()) {
-            if (!id.getText().isEmpty()) {
-                int iD = Integer.parseInt(id.getText());
-                if (As.BuscarUsuario(iD) != null) {
-                    String nm = As.BuscarUsuario(iD).getUserName();
-                    nombreDeUsuario.setText(nm);
-                    ID.setText("" + As.BuscarUsuario(iD).getId());
-                    nombre.setText(As.BuscarUsuario(iD).getName());
-                    email.setText(As.BuscarUsuario(iD).getEmail());
-                    showArea(infoUsuario, As.BuscarUsuario(iD));
-                    cl.show(panelDeVisualizacion, "Ui");
+        if (As != null) {
+            infoUsuario.setText("");
+            if (!id.getText().isEmpty() || !userName.getText().isEmpty()) {
+                if (!id.getText().isEmpty()) {
+                    try {
+                        int iD = Integer.parseInt(id.getText());
+                        if (As.BuscarUsuario(iD) != null) {
+                            String nm = As.BuscarUsuario(iD).getUserName();
+                            nombreDeUsuario.setText(nm);
+                            ID.setText("" + As.BuscarUsuario(iD).getId());
+                            nombre.setText(As.BuscarUsuario(iD).getName());
+                            email.setText(As.BuscarUsuario(iD).getEmail());
+                            showArea(infoUsuario, As.BuscarUsuario(iD));
+                            cl.show(panelDeVisualizacion, "Ui");
+                        } else {
+                            cl.show(panelDeVisualizacion, "Ps");
+                            JOptionPane.showMessageDialog(null, "No se encontró el usuario", "ERROR", 0);
+                        }
+                    } catch (NumberFormatException ex) {
+                        JOptionPane.showMessageDialog(null, "El ID de usuario debe ser un carácter numérico", "ERROR", 0);
+                    }
                 } else {
-                    cl.show(panelDeVisualizacion, "Ps");
-                    JOptionPane.showMessageDialog(null, "No se encontró el usuario", "ERROR", 0);
+                    String UN = userName.getText();
+                    if (As.BuscarUsuario(UN) != null) {
+                        nombreDeUsuario.setText(As.BuscarUsuario(UN).getUserName());
+                        ID.setText("" + As.BuscarUsuario(UN).getId());
+                        nombre.setText(As.BuscarUsuario(UN).getName());
+                        email.setText(As.BuscarUsuario(UN).getEmail());
+                        showArea(infoUsuario, As.BuscarUsuario(UN));
+                        cl.show(panelDeVisualizacion, "Ui");
+                    } else {
+                        cl.show(panelDeVisualizacion, "Ps");
+                        JOptionPane.showMessageDialog(null, "No se encontró el usuario", "ERROR", 0);
+                    }
                 }
             } else {
-                String UN = userName.getText();
-                if (As.BuscarUsuario(UN) != null) {
-                    nombreDeUsuario.setText(As.BuscarUsuario(UN).getUserName());
-                    ID.setText("" + As.BuscarUsuario(UN).getId());
-                    nombre.setText(As.BuscarUsuario(UN).getName());
-                    email.setText(As.BuscarUsuario(UN).getEmail());
-                    showArea(infoUsuario, As.BuscarUsuario(UN));
-                    cl.show(panelDeVisualizacion, "Ui");
-                } else {
-                    cl.show(panelDeVisualizacion, "Ps");
-                    JOptionPane.showMessageDialog(null, "No se encontró el usuario", "ERROR", 0);
-                }
-                
+                cl.show(panelDeVisualizacion, "Ps");
+                JOptionPane.showMessageDialog(null, "Se debe llenar uno de los dos campos", "ERROR", 0);
             }
         } else {
-            cl.show(panelDeVisualizacion, "Ps");
-            JOptionPane.showMessageDialog(null, "Se debe llenar uno de los dos campos", "ERROR", 0);
+            JOptionPane.showMessageDialog(null, "Debe cargar los archivos primero", "ERROR", 0);
         }
         id.setText("");
         userName.setText("");
     }//GEN-LAST:event_buscarUserActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void volver1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volver1ActionPerformed
         cl.show(panelDeVisualizacion, "Ps");
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_volver1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void volver2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volver2ActionPerformed
         cl.show(panelDeVisualizacion, "Ps");
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_volver2ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
         System.exit(0);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_salirActionPerformed
+
+    private void cargarArchivosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargarArchivosActionPerformed
+        ventanaArchivos.setVisible(true);
+        ventanaArchivos.setLocationRelativeTo(null);
+        ventanaArchivos.setSize(688, 341);
+    }//GEN-LAST:event_cargarArchivosActionPerformed
+
+    private void exUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exUActionPerformed
+        JFileChooser fc = new JFileChooser();
+        FileNameExtensionFilter F = new FileNameExtensionFilter("*.TXT", "txt");
+        fc.setFileFilter(F);
+        int accion = fc.showOpenDialog(this);
+        if (accion == JFileChooser.APPROVE_OPTION) {
+            File fileU = fc.getSelectedFile();
+            rutaU.setText(fileU.getAbsolutePath());
+        }
+    }//GEN-LAST:event_exUActionPerformed
+
+    private void exPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exPActionPerformed
+        JFileChooser fc = new JFileChooser();
+        FileNameExtensionFilter F = new FileNameExtensionFilter("*.TXT", "txt");
+        fc.setFileFilter(F);
+        int accion = fc.showOpenDialog(this);
+        if (accion == JFileChooser.APPROVE_OPTION) {
+            File fileU = fc.getSelectedFile();
+            rutaP.setText(fileU.getAbsolutePath());
+        }
+    }//GEN-LAST:event_exPActionPerformed
+
+    private void exCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exCActionPerformed
+        JFileChooser fc = new JFileChooser();
+        FileNameExtensionFilter F = new FileNameExtensionFilter("*.TXT", "txt");
+        fc.setFileFilter(F);
+        int accion = fc.showOpenDialog(this);
+        if (accion == JFileChooser.APPROVE_OPTION) {
+            File fileU = fc.getSelectedFile();
+            rutaC.setText(fileU.getAbsolutePath());
+        }
+    }//GEN-LAST:event_exCActionPerformed
+
+    private void CargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CargarActionPerformed
+        if (!rutaU.getText().isEmpty() && !rutaP.getText().isEmpty() && !rutaC.getText().isEmpty()) {
+            master = new InterJSON(rutaU.getText(), rutaP.getText(), rutaC.getText());
+            As = new ArbolNA(master.Transformar());//Se crea el arreglo de usuarios con todos sus atributos, incluyendo posts y comentarios, y se envia este al Árbol que se creará
+            showAreaPosts(posts, As.getNR());
+        } else {
+            JOptionPane.showMessageDialog(null, "No debe dejar ninguna ruta vacía", "ERROR", 0);
+        }
+
+    }//GEN-LAST:event_CargarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -460,27 +641,34 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JLabel BuscarIdPost;
     private javax.swing.JLabel BuscarPost;
     private javax.swing.JLabel BuscarUsuario;
+    private javax.swing.JButton Cargar;
     private javax.swing.JLabel ID;
     private javax.swing.JLabel IconoUsuario;
     private javax.swing.JLabel InfoAdicional;
     private javax.swing.JPanel PostIndividual;
     private javax.swing.JPanel Posts;
     private javax.swing.JPanel UsuarioIndividual;
+    private javax.swing.JLabel bckg;
     private javax.swing.JButton buscarPost;
     private javax.swing.JButton buscarUser;
     private javax.swing.JLabel buscarUserName;
+    private javax.swing.JLabel cargarA;
+    private javax.swing.JButton cargarArchivos;
     private javax.swing.JTextArea comments;
     private javax.swing.JLabel email;
+    private javax.swing.JButton exC;
+    private javax.swing.JButton exP;
+    private javax.swing.JButton exU;
     private javax.swing.JTextField id;
     private javax.swing.JTextField idPost;
     private javax.swing.JTextArea infoUsuario;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -491,11 +679,18 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JPanel panelDeVisualizacion;
     private javax.swing.JTextArea post;
     private javax.swing.JTextArea posts;
+    private javax.swing.JTextField rutaC;
+    private javax.swing.JTextField rutaP;
+    private javax.swing.JTextField rutaU;
+    private javax.swing.JButton salir;
     private javax.swing.JScrollPane scrollPost;
     private javax.swing.JSeparator separador1;
     private javax.swing.JSeparator separador2;
     private javax.swing.JSplitPane splitPostIndividual;
     private javax.swing.JLabel titleID;
     private javax.swing.JTextField userName;
+    private javax.swing.JFrame ventanaArchivos;
+    private javax.swing.JButton volver1;
+    private javax.swing.JButton volver2;
     // End of variables declaration//GEN-END:variables
 }
