@@ -352,6 +352,11 @@ public abstract class Arbol {
             }
         }
         
+        /**
+         * 
+         * @param posts
+         * @return 
+         */
         public NodoPost hermanosPost(Lista<Post> posts) {
             Lista<Post> p = posts;
             try{
@@ -366,6 +371,11 @@ public abstract class Arbol {
             return this;
         }
 
+        /**
+         * Metodo que permite acceder a un NodoComment, por medio de su posición en la lista
+         * @param i Índice del NodoComment en la lista de comentarios
+         * @return NodoComment objetivo
+         */
         public NodoComment getComment(int i) {
             NodoComment c = this.linkC;
             int cont = 0;
@@ -377,9 +387,9 @@ public abstract class Arbol {
         }
         
         /**
-         * Método que condensa la información de varios Comment de una lista de elementos Comment
-         * @param As
-         * @return 
+         * Método que condensa la información de un NodoPost
+         * @param As Arbol con el cual se está trabajando
+         * @return StringBuffer que contiene la información condensada y organizada de un NodoPost
          */
         public StringBuffer showPost(ArbolNA As){
             StringBuffer sb = new StringBuffer("");
